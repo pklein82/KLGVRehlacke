@@ -1,0 +1,37 @@
+<%- include('partials/head') %>
+<%- include('partials/shell-top') %>
+
+<div class="admin-head">
+  <div>
+    <h1>Einstellungen</h1>
+    <p>Name, Kontaktdaten und Texte, die an mehreren Stellen der Website erscheinen.</p>
+  </div>
+</div>
+
+<%- include('partials/flash') %>
+
+<form method="post" action="/admin/einstellungen">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+  <% groups.forEach(function (group) { %>
+    <div class="panel">
+      <div class="panel__head"><h2><%= group.title %></h2></div>
+      <div class="panel__body">
+        <div class="form-grid">
+          <% group.fields.forEach(function (field) { %>
+            <%- include('partials/field', { field: field, row: values }) %>
+          <% }); %>
+        </div>
+      </div>
+    </div>
+  <% }); %>
+
+  <div class="panel panel--spaced">
+    <div class="form-actions">
+      <button class="btn btn--solid" type="submit"><%- icon('check') %> Einstellungen speichern</button>
+      <a class="btn btn--outline" href="/admin">Abbrechen</a>
+    </div>
+  </div>
+</form>
+
+<%- include('partials/shell-bottom') %>

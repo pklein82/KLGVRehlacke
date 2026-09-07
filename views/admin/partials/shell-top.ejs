@@ -1,0 +1,58 @@
+<body class="admin">
+<div class="admin-shell">
+
+  <aside class="admin-side">
+    <a class="admin-brand" href="/admin">
+      <span class="admin-brand__mark"><%- icon('leaf') %></span>
+      <span>
+        <b>Redaktion</b>
+        <span><%= settings.site_title %></span>
+      </span>
+    </a>
+
+    <nav class="admin-nav" aria-label="Redaktionsnavigation">
+      <a href="/admin"<%- adminSection === 'dashboard' ? ' aria-current="page"' : '' %>>
+        <%- icon('shield') %> Übersicht
+      </a>
+
+      <p class="admin-nav__label">Inhalte</p>
+      <% Object.entries(resources).forEach(function ([key, def]) { %>
+        <a href="/admin/inhalt/<%= key %>"<%- adminSection === key ? ' aria-current="page"' : '' %>>
+          <%- icon(def.icon) %> <%= def.label %>
+          <% if (key === 'flohmarkt' && pendingCount) { %><span class="badge"><%= pendingCount %></span><% } %>
+        </a>
+      <% }); %>
+
+      <p class="admin-nav__label">Verwaltung</p>
+      <a href="/admin/nachrichten"<%- adminSection === 'nachrichten' ? ' aria-current="page"' : '' %>>
+        <%- icon('mail') %> Nachrichten
+        <% if (messageCount) { %><span class="badge"><%= messageCount %></span><% } %>
+      </a>
+      <a href="/admin/medien"<%- adminSection === 'medien' ? ' aria-current="page"' : '' %>>
+        <%- icon('file') %> Medien
+      </a>
+      <a href="/admin/einstellungen"<%- adminSection === 'einstellungen' ? ' aria-current="page"' : '' %>>
+        <%- icon('info') %> Einstellungen
+      </a>
+      <a href="/admin/konto"<%- adminSection === 'konto' ? ' aria-current="page"' : '' %>>
+        <%- icon('users') %> Konto
+      </a>
+
+      <p class="admin-nav__label">Website</p>
+      <a href="/" target="_blank" rel="noopener"><%- icon('external') %> Website ansehen</a>
+    </nav>
+
+    <div class="admin-side__foot">
+      <p>
+        <strong><%= currentUser.name %></strong>
+        <%= currentUser.email %>
+      </p>
+      <form method="post" action="/admin/logout">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button class="linkish" type="submit">Abmelden</button>
+      </form>
+    </div>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-main__inner">

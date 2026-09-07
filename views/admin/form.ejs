@@ -1,0 +1,61 @@
+<%- include('partials/head') %>
+<%- include('partials/shell-top') %>
+
+<div class="admin-head">
+  <div>
+    <h1><%= isNew ? def.singular + ' anlegen' : def.singular + ' bearbeiten' %></h1>
+    <p><a href="/admin/inhalt/<%= resource %>">&larr; zurück zu <%= def.label %></a></p>
+  </div>
+  <% if (!isNew && def.publicPath) { %>
+    <div class="admin-head__actions">
+      <a class="btn btn--outline btn--sm" href="<%= def.publicPath(row) %>" target="_blank" rel="noopener">
+        <%- icon('external') %> Auf der Website ansehen
+      </a>
+    </div>
+  <% } %>
+</div>
+
+<%- include('partials/flash') %>
+
+<% if (errors.length) { %>
+  <div class="notice notice--error" role="alert">
+    <%- icon('alert') %>
+    <div>
+      <p class="mb-0"><strong>Bitte prüfen Sie Ihre Eingaben:</strong></p>
+      <ul><% errors.forEach(function (e) { %><li><%= e %></li><% }); %></ul>
+    </div>
+  </div>
+<% } %>
+
+<form class="panel" method="post"
+      action="/admin/inhalt/<%= resource %><%= isNew ? '' : '/' + row.id %>"
+      enctype="multipart/form-data">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+  <div class="panel__body">
+    <div class="form-grid">
+      <% def.fields.forEach(function (field) { %>
+        <%- include('partials/field', { field: field, row: row }) %>
+      <% }); %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button class="btn btn--solid" type="submit"><%- icon('check') %> Speichern</button>
+    <a class="btn btn--outline" href="/admin/inhalt/<%= resource %>">Abbrechen</a>
+
+    <% if (!isNew) { %>
+      <span class="spacer"></span>
+    <% } %>
+  </div>
+</form>
+
+<% if (!isNew) { %>
+  <form method="post" action="/admin/inhalt/<%= resource %>/<%= row.id %>/loeschen"
+        data-confirm="Diesen Eintrag wirklich dauerhaft löschen?" class="panel--spaced">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <button class="btn btn--outline btn--sm" type="submit"><%= def.singular %> löschen</button>
+  </form>
+<% } %>
+
+<%- include('partials/shell-bottom') %>

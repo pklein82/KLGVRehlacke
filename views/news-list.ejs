@@ -1,0 +1,47 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<%- include('partials/page-head', {
+  crumbs: [{ label: 'Aktuelles' }],
+  kicker: 'Mitteilungen',
+  heading: 'Aktuelles',
+  lead: 'Neuigkeiten, Hinweise und Mitteilungen der Vereinsleitung.',
+}) %>
+
+<section class="section wrap">
+  <%- include('partials/flash') %>
+
+  <% if (!news.length) { %>
+    <div class="empty"><p class="mb-0">Derzeit sind keine Beiträge veröffentlicht.</p></div>
+  <% } else { %>
+    <div class="grid grid--3">
+      <% news.forEach(function (item) { %>
+        <article class="card card--link reveal">
+          <% if (item.image) { %>
+            <div class="news-card__image"><img src="<%= item.image %>" alt="" loading="lazy"></div>
+          <% } %>
+          <div class="card__meta">
+            <time datetime="<%= item.published_at %>"><%= h.formatDate(item.published_at) %></time>
+            <% if (item.pinned) { %><span class="tag">Wichtig</span><% } %>
+          </div>
+          <h3><a class="card__link" href="/aktuelles/<%= item.slug %>"><%= item.title %></a></h3>
+          <p><%= item.excerpt || h.plainText(item.body, 150) %></p>
+          <span class="link-more">Weiterlesen <%- icon('arrow') %></span>
+        </article>
+      <% }); %>
+    </div>
+
+    <% if (pages > 1) { %>
+      <nav class="pagination" aria-label="Seiten">
+        <% if (page > 1) { %><a href="/aktuelles?seite=<%= page - 1 %>" rel="prev">Zurück</a><% } %>
+        <% for (let i = 1; i <= pages; i++) { %>
+          <% if (i === page) { %><span aria-current="page"><%= i %></span>
+          <% } else { %><a href="/aktuelles?seite=<%= i %>"><%= i %></a><% } %>
+        <% } %>
+        <% if (page < pages) { %><a href="/aktuelles?seite=<%= page + 1 %>" rel="next">Weiter</a><% } %>
+      </nav>
+    <% } %>
+  <% } %>
+</section>
+
+<%- include('partials/footer') %>

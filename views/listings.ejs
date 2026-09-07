@@ -1,0 +1,135 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<%- include('partials/page-head', {
+  crumbs: [{ label: 'Ich biete / Ich suche' }],
+  kicker: 'Für Mitglieder',
+  heading: 'Ich biete / Ich suche',
+  lead: settings.flohmarkt_intro,
+}) %>
+
+<section class="section wrap">
+  <%- include('partials/flash') %>
+
+  <div class="grid grid--2">
+    <section>
+      <div class="section__head mb-1">
+        <h2 class="head-tag"><span class="tag">Ich biete</span></h2>
+      </div>
+      <% if (!offers.length) { %>
+        <div class="empty"><p class="mb-0">Aktuell keine Angebote.</p></div>
+      <% } else { %>
+        <div class="grid">
+          <% offers.forEach(function (item) { %>
+            <article class="card reveal">
+              <div class="card__meta">
+                <time datetime="<%= item.created_at %>"><%= h.formatDate(item.created_at) %></time>
+                <% if (item.parcel) { %><span><%= item.parcel %></span><% } %>
+              </div>
+              <h3><%= item.title %></h3>
+              <p><%= item.body %></p>
+              <% if (item.contact) { %><p class="mb-0 text-muted text-xs">Kontakt: <%= item.contact %></p><% } %>
+            </article>
+          <% }); %>
+        </div>
+      <% } %>
+    </section>
+
+    <section>
+      <div class="section__head mb-1">
+        <h2 class="head-tag"><span class="tag tag--accent">Ich suche</span></h2>
+      </div>
+      <% if (!wants.length) { %>
+        <div class="empty"><p class="mb-0">Aktuell keine Suchanzeigen.</p></div>
+      <% } else { %>
+        <div class="grid">
+          <% wants.forEach(function (item) { %>
+            <article class="card reveal">
+              <div class="card__meta">
+                <time datetime="<%= item.created_at %>"><%= h.formatDate(item.created_at) %></time>
+                <% if (item.parcel) { %><span><%= item.parcel %></span><% } %>
+              </div>
+              <h3><%= item.title %></h3>
+              <p><%= item.body %></p>
+              <% if (item.contact) { %><p class="mb-0 text-muted text-xs">Kontakt: <%= item.contact %></p><% } %>
+            </article>
+          <% }); %>
+        </div>
+      <% } %>
+    </section>
+  </div>
+</section>
+
+<section class="section section--tinted" id="anzeige-aufgeben">
+  <div class="wrap wrap--narrow">
+    <div class="section__head">
+      <div>
+        <p class="kicker">Mitmachen</p>
+        <h2>Anzeige aufgeben</h2>
+        <p>Ihre Anzeige wird von der Vereinsleitung geprüft und dann veröffentlicht.</p>
+      </div>
+    </div>
+
+    <% if (errors.length) { %>
+      <div class="notice notice--error" role="alert">
+        <%- icon('alert') %>
+        <div>
+          <p class="mb-0"><strong>Bitte prüfen Sie Ihre Eingaben:</strong></p>
+          <ul><% errors.forEach(function (e) { %><li><%= e %></li><% }); %></ul>
+        </div>
+      </div>
+    <% } %>
+
+    <form class="form card" method="post" action="/flohmarkt">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+      <div class="field">
+        <label>Art der Anzeige</label>
+        <div class="radio-group">
+          <label class="radio-card">
+            <input type="radio" name="kind" value="biete" <%= form.kind !== 'suche' ? 'checked' : '' %>> Ich biete
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="kind" value="suche" <%= form.kind === 'suche' ? 'checked' : '' %>> Ich suche
+          </label>
+        </div>
+      </div>
+
+      <div class="field field--required">
+        <label for="l-title">Titel</label>
+        <input id="l-title" type="text" name="title" maxlength="120" required
+               value="<%= form.title || '' %>" placeholder="z. B. Gartenschlauch, 20 m">
+      </div>
+
+      <div class="field field--required">
+        <label for="l-body">Beschreibung</label>
+        <textarea id="l-body" name="body" maxlength="2000" required
+                  placeholder="Zustand, Menge, Preis oder Abgabe gegen Spende …"><%= form.body || '' %></textarea>
+      </div>
+
+      <div class="form-row form-row--2">
+        <div class="field field--required">
+          <label for="l-contact">So erreichen Sie mich</label>
+          <input id="l-contact" type="text" name="contact" maxlength="160" required
+                 value="<%= form.contact || '' %>" placeholder="Telefon, E-Mail oder Sprechstunde">
+        </div>
+        <div class="field">
+          <label for="l-parcel">Parzelle</label>
+          <input id="l-parcel" type="text" name="parcel" maxlength="40"
+                 value="<%= form.parcel || '' %>" placeholder="z. B. Parz. 42">
+        </div>
+      </div>
+
+      <p class="field__hint mb-0">
+        Ihre Angaben werden ausschließlich zur Veröffentlichung der Anzeige verwendet.
+        Details in der <a href="/datenschutz">Datenschutzerklärung</a>.
+      </p>
+
+      <div>
+        <button class="btn btn--solid" type="submit"><%- icon('check') %> Anzeige übermitteln</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

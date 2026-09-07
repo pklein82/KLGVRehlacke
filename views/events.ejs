@@ -1,0 +1,70 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<%- include('partials/page-head', {
+  crumbs: [{ label: 'Termine' }],
+  kicker: 'Kalender',
+  heading: 'Termine',
+  lead: 'Sprechstunden, Arbeitseinsätze, Hauptversammlung und Feste im Verein.',
+}) %>
+
+<section class="section wrap">
+  <div class="with-aside">
+    <div>
+      <h2>Kommende Termine</h2>
+      <% if (!upcoming.length) { %>
+        <div class="empty"><p class="mb-0">Derzeit sind keine Termine eingetragen.</p></div>
+      <% } else { %>
+        <div class="card">
+          <% upcoming.forEach(function (event) { const d = h.dateParts(event.starts_at); %>
+            <article class="event">
+              <div class="event__date">
+                <span class="event__day"><%= d.day %></span>
+                <span class="event__month"><%= d.month %></span>
+              </div>
+              <div class="event__body">
+                <h3><%= event.title %></h3>
+                <p class="event__when">
+                  <%= h.formatEventRange(event) %><% if (event.location) { %> &middot; <%= event.location %><% } %>
+                </p>
+                <% if (event.description) { %><p class="event__desc"><%= event.description %></p><% } %>
+              </div>
+            </article>
+          <% }); %>
+        </div>
+      <% } %>
+
+      <% if (past.length) { %>
+        <h2 class="mt-4">Vergangene Termine</h2>
+        <div class="card">
+          <% past.forEach(function (event) { const d = h.dateParts(event.starts_at); %>
+            <article class="event event--past">
+              <div class="event__date">
+                <span class="event__day"><%= d.day %></span>
+                <span class="event__month"><%= d.month %></span>
+              </div>
+              <div class="event__body">
+                <h3><%= event.title %></h3>
+                <p class="event__when"><%= h.formatEventRange(event) %><% if (event.location) { %> &middot; <%= event.location %><% } %></p>
+              </div>
+            </article>
+          <% }); %>
+        </div>
+      <% } %>
+    </div>
+
+    <aside class="aside--sticky">
+      <div class="aside-box">
+        <h2>Sprechstunde</h2>
+        <p class="text-sm mb-0"><%= settings.office_hours %></p>
+      </div>
+      <div class="aside-box">
+        <h2>Ruhezeiten</h2>
+        <p class="text-sm">Bei Arbeitseinsätzen und Festen gelten die Ruhezeiten der Anlage.</p>
+        <a class="link-more" href="/ruhezeiten">Ruhezeiten ansehen <%- icon('arrow') %></a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

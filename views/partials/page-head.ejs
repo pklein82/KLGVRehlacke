@@ -1,0 +1,17 @@
+<section class="page-head">
+  <div class="wrap">
+    <% if (typeof crumbs !== 'undefined' && crumbs.length) { %>
+      <nav aria-label="Sie sind hier">
+        <ol class="breadcrumb">
+          <li><a href="/">Start</a></li>
+          <% crumbs.forEach(function (crumb, i) { %>
+            <li><% if (crumb.href && i < crumbs.length - 1) { %><a href="<%= crumb.href %>"><%= crumb.label %></a><% } else { %><span aria-current="page"><%= crumb.label %></span><% } %></li>
+          <% }); %>
+        </ol>
+      </nav>
+    <% } %>
+    <% if (typeof kicker !== 'undefined' && kicker) { %><p class="kicker"><%= kicker %></p><% } %>
+    <h1><%= heading %></h1>
+    <% if (typeof lead !== 'undefined' && lead) { %><p class="page-head__lead"><%= lead %></p><% } %>
+  </div>
+</section>

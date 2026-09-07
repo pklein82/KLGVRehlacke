@@ -1,0 +1,38 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<%- include('partials/page-head', {
+  crumbs: [{ label: page.nav_title || page.title }],
+  kicker: '',
+  heading: page.title,
+  lead: page.intro,
+}) %>
+
+<section class="section wrap">
+  <div class="with-aside">
+    <article class="prose"><%- html %></article>
+
+    <aside class="aside--sticky">
+      <% if (siblings.length) { %>
+        <div class="aside-box">
+          <h2>Mehr zum Verein</h2>
+          <ul class="aside-nav">
+            <% siblings.forEach(function (sib) { %>
+              <li><a href="/<%= sib.slug %>"><%= sib.nav_title || sib.title %></a></li>
+            <% }); %>
+          </ul>
+        </div>
+      <% } %>
+      <div class="aside-box">
+        <h2>Kontakt</h2>
+        <ul class="contact-list text-sm">
+          <li><%- icon('pin') %><div><%= settings.street %><br><%= settings.zip %> <%= settings.city %></div></li>
+          <% if (settings.email) { %><li><%- icon('mail') %><div><a href="mailto:<%= settings.email %>"><%= settings.email %></a></div></li><% } %>
+        </ul>
+        <p class="mb-0 mt-2"><a class="btn btn--outline btn--sm" href="/kontakt">Nachricht senden</a></p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

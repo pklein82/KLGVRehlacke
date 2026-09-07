@@ -1,0 +1,112 @@
+<%- include('partials/head') %>
+<%- include('partials/shell-top') %>
+
+<div class="admin-head">
+  <div>
+    <h1>Übersicht</h1>
+    <p>Willkommen, <%= currentUser.name %>. Hier pflegen Sie die Inhalte der Vereinswebsite.</p>
+  </div>
+  <div class="admin-head__actions">
+    <a class="btn btn--solid btn--sm" href="/admin/inhalt/news/neu"><%- icon('news') %> Beitrag schreiben</a>
+    <a class="btn btn--outline btn--sm" href="/admin/inhalt/termine/neu"><%- icon('calendar') %> Termin anlegen</a>
+  </div>
+</div>
+
+<%- include('partials/flash') %>
+
+<% if (pendingListings || newMessages) { %>
+  <div class="notice notice--info">
+    <%- icon('info') %>
+    <div>
+      <p class="mb-0">
+        <strong>Zu erledigen:</strong>
+        <% if (pendingListings) { %>
+          <a href="/admin/inhalt/flohmarkt"><%= pendingListings %> Anzeige(n) warten auf Prüfung</a><%= newMessages ? ' · ' : '' %>
+        <% } %>
+        <% if (newMessages) { %>
+          <a href="/admin/nachrichten"><%= newMessages %> neue Nachricht(en)</a>
+        <% } %>
+      </p>
+    </div>
+  </div>
+<% } %>
+
+<div class="stat-grid">
+  <% Object.entries(resources).forEach(function ([key, def]) { %>
+    <a class="stat" href="/admin/inhalt/<%= key %>">
+      <span class="stat__icon"><%- icon(def.icon) %></span>
+      <span>
+        <span class="stat__value"><%= counts[key] %></span>
+        <span class="stat__label"><%= def.label %></span>
+      </span>
+    </a>
+  <% }); %>
+</div>
+
+<div class="panel">
+  <div class="panel__head">
+    <h2>Zuletzt bearbeitete Beiträge</h2>
+    <a class="link-more" href="/admin/inhalt/news">Alle <%- icon('arrow') %></a>
+  </div>
+  <% if (!recentNews.length) { %>
+    <div class="panel__body"><p class="text-muted mb-0">Noch keine Beiträge vorhanden.</p></div>
+  <% } else { %>
+    <div class="table-wrap">
+      <table class="table">
+        <thead><tr><th>Titel</th><th>Datum</th><th>Status</th></tr></thead>
+        <tbody>
+          <% recentNews.forEach(function (item) { %>
+            <tr>
+              <td class="table__primary"><a href="/admin/inhalt/news/<%= item.id %>"><%= item.title %></a></td>
+              <td><%= h.formatDate(item.published_at) %></td>
+              <td>
+                <span class="pill pill--<%= item.published ? 'on' : 'off' %>">
+                  <%= item.published ? 'Veröffentlicht' : 'Entwurf' %>
+                </span>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+</div>
+
+<div class="panel">
+  <div class="panel__head">
+    <h2>Nächste Termine</h2>
+    <a class="link-more" href="/admin/inhalt/termine">Alle <%- icon('arrow') %></a>
+  </div>
+  <% if (!nextEvents.length) { %>
+    <div class="panel__body"><p class="text-muted mb-0">Keine kommenden Termine eingetragen.</p></div>
+  <% } else { %>
+    <div class="table-wrap">
+      <table class="table">
+        <thead><tr><th>Termin</th><th>Wann</th></tr></thead>
+        <tbody>
+          <% nextEvents.forEach(function (event) { %>
+            <tr>
+              <td class="table__primary"><a href="/admin/inhalt/termine/<%= event.id %>"><%= event.title %></a></td>
+              <td><%= h.formatEventRange(event) %></td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+</div>
+
+<div class="panel">
+  <div class="panel__head"><h2>Kurzhilfe</h2></div>
+  <div class="panel__body help-text">
+    <p><strong>Texte formatieren:</strong> In den Textfeldern können Sie Markdown verwenden –
+      <code>## Überschrift</code>, <code>**fett**</code>, <code>*kursiv*</code>,
+      <code>- Listenpunkt</code> und <code>[Linktext](/ziel)</code>. Über „Vorschau“ sehen Sie das Ergebnis.</p>
+    <p><strong>Bilder und Dateien:</strong> Direkt im Formular hochladen oder zuerst unter
+      <a href="/admin/medien">Medien</a> ablegen und den Pfad einfügen.</p>
+    <p class="mb-0"><strong>Entwurf:</strong> Entfernen Sie das Häkchen „Veröffentlicht“, dann ist der
+      Inhalt nur hier sichtbar.</p>
+  </div>
+</div>
+
+<%- include('partials/shell-bottom') %>

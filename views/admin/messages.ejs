@@ -1,0 +1,57 @@
+<%- include('partials/head') %>
+<%- include('partials/shell-top') %>
+
+<div class="admin-head">
+  <div>
+    <h1>Nachrichten</h1>
+    <p>Anfragen über das Kontaktformular der Website.</p>
+  </div>
+</div>
+
+<%- include('partials/flash') %>
+
+<div class="panel">
+  <% if (!messages.length) { %>
+    <div class="panel__body"><p class="text-muted mb-0">Keine Nachrichten vorhanden.</p></div>
+  <% } else { %>
+    <% messages.forEach(function (msg) { %>
+      <article class="message <%= msg.handled ? '' : 'message--new' %>">
+        <div class="message__head">
+          <span class="message__from"><%= msg.name %></span>
+          <span class="message__meta">
+            <a href="mailto:<%= msg.email %>"><%= msg.email %></a>
+            <% if (msg.phone) { %> &middot; <%= msg.phone %><% } %>
+            <% if (msg.parcel) { %> &middot; <%= msg.parcel %><% } %>
+            &middot; <%= h.formatDate(msg.created_at) %>
+          </span>
+          <span class="pill pill--<%= msg.handled ? 'off' : 'warn' %> ml-auto">
+            <%= msg.handled ? 'Erledigt' : 'Neu' %>
+          </span>
+        </div>
+
+        <% if (msg.subject) { %><p class="message__subject"><%= msg.subject %></p><% } %>
+        <p class="message__body"><%= msg.body %></p>
+
+        <div class="message__actions">
+          <a class="btn btn--outline btn--sm"
+             href="mailto:<%= msg.email %>?subject=<%= encodeURIComponent('Re: ' + (msg.subject || 'Ihre Anfrage')) %>">
+            <%- icon('mail') %> Antworten
+          </a>
+          <form method="post" action="/admin/nachrichten/<%= msg.id %>/erledigt">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button class="btn btn--outline btn--sm" type="submit">
+              <%= msg.handled ? 'Als neu markieren' : 'Als erledigt markieren' %>
+            </button>
+          </form>
+          <form method="post" action="/admin/nachrichten/<%= msg.id %>/loeschen"
+                data-confirm="Nachricht von <%= msg.name.replace(/"/g, '') %> löschen?">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button class="btn btn--outline btn--sm" type="submit">Löschen</button>
+          </form>
+        </div>
+      </article>
+    <% }); %>
+  <% } %>
+</div>
+
+<%- include('partials/shell-bottom') %>

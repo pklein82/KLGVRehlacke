@@ -1,0 +1,71 @@
+<%- include('partials/head') %>
+<%- include('partials/shell-top') %>
+
+<div class="admin-head">
+  <div>
+    <h1>Konto</h1>
+    <p>Name, E-Mail-Adresse und Kennwort für den Redaktionsbereich.</p>
+  </div>
+</div>
+
+<%- include('partials/flash') %>
+
+<% if (errors.length) { %>
+  <div class="notice notice--error" role="alert">
+    <%- icon('alert') %>
+    <div>
+      <p class="mb-0"><strong>Bitte prüfen Sie Ihre Eingaben:</strong></p>
+      <ul><% errors.forEach(function (e) { %><li><%= e %></li><% }); %></ul>
+    </div>
+  </div>
+<% } %>
+
+<form method="post" action="/admin/konto">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+  <div class="panel">
+    <div class="panel__head"><h2>Zugangsdaten</h2></div>
+    <div class="panel__body">
+      <div class="form-grid">
+        <div class="field field--half field--required">
+          <label for="a-name">Name</label>
+          <input id="a-name" type="text" name="name" required maxlength="120" value="<%= user.name %>">
+        </div>
+        <div class="field field--half field--required">
+          <label for="a-email">E-Mail-Adresse</label>
+          <input id="a-email" type="email" name="email" required maxlength="160" value="<%= user.email %>">
+        </div>
+      </div>
+      <% if (user.last_login) { %>
+        <p class="field__hint mt-1">Letzte Anmeldung: <%= user.last_login %></p>
+      <% } %>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel__head"><h2>Kennwort ändern</h2></div>
+    <div class="panel__body">
+      <div class="form-grid">
+        <div class="field">
+          <label for="a-current">Aktuelles Kennwort</label>
+          <input id="a-current" type="password" name="current_password" autocomplete="current-password">
+          <span class="field__hint">Nur nötig, wenn Sie das Kennwort ändern möchten.</span>
+        </div>
+        <div class="field field--half">
+          <label for="a-new">Neues Kennwort</label>
+          <input id="a-new" type="password" name="new_password" autocomplete="new-password" minlength="10">
+          <span class="field__hint">Mindestens 10 Zeichen.</span>
+        </div>
+        <div class="field field--half">
+          <label for="a-repeat">Neues Kennwort wiederholen</label>
+          <input id="a-repeat" type="password" name="repeat_password" autocomplete="new-password">
+        </div>
+      </div>
+    </div>
+    <div class="form-actions">
+      <button class="btn btn--solid" type="submit"><%- icon('check') %> Speichern</button>
+    </div>
+  </div>
+</form>
+
+<%- include('partials/shell-bottom') %>

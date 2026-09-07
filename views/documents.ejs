@@ -1,0 +1,51 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<%- include('partials/page-head', {
+  crumbs: [{ label: 'Downloads' }],
+  kicker: 'Unterlagen',
+  heading: 'Downloads',
+  lead: 'Statuten, Gartenordnung, Beschlüsse der Hauptversammlung und weitere Unterlagen.',
+}) %>
+
+<section class="section wrap">
+  <% if (!total) { %>
+    <div class="empty"><p class="mb-0">Derzeit sind keine Dokumente hinterlegt.</p></div>
+  <% } else { %>
+    <div class="stack-lg">
+      <% groups.forEach(function ([category, docs]) { %>
+        <section>
+          <h2><%= category %></h2>
+          <ul class="doc-list">
+            <% docs.forEach(function (doc) {
+                 const href = doc.file || doc.link;
+                 const external = !doc.file && !!doc.link; %>
+              <li>
+                <% if (href) { %>
+                  <a class="doc" href="<%= href %>"<%- external ? ' target="_blank" rel="noopener"' : '' %>>
+                    <span class="doc__icon"><%- icon(external ? 'external' : 'file') %></span>
+                    <span>
+                      <span class="doc__title"><%= doc.title %></span>
+                      <% if (doc.description) { %><span class="doc__desc"><%= doc.description %></span><% } %>
+                    </span>
+                    <span class="doc__arrow"><%- icon(external ? 'external' : 'download') %></span>
+                  </a>
+                <% } else { %>
+                  <span class="doc doc--pending">
+                    <span class="doc__icon"><%- icon('file') %></span>
+                    <span>
+                      <span class="doc__title"><%= doc.title %></span>
+                      <span class="doc__desc"><%= doc.description %> <em>(Datei wird nachgereicht)</em></span>
+                    </span>
+                  </span>
+                <% } %>
+              </li>
+            <% }); %>
+          </ul>
+        </section>
+      <% }); %>
+    </div>
+  <% } %>
+</section>
+
+<%- include('partials/footer') %>

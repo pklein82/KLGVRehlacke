@@ -1,0 +1,6 @@
+<% if (flash) { %>
+  <div class="notice notice--<%= flash.type === 'error' ? 'error' : 'success' %>" role="status">
+    <%- icon(flash.type === 'error' ? 'alert' : 'check') %>
+    <div><p class="mb-0"><%= flash.text %></p></div>
+  </div>
+<% } %>

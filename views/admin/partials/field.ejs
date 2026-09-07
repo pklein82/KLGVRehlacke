@@ -1,0 +1,83 @@
+<%
+  const value = row[field.key] ?? field.default ?? '';
+  const id = 'f-' + field.key;
+  const cls = 'field' + (field.width === 'half' ? ' field--half' : '') + (field.required ? ' field--required' : '');
+%>
+<div class="<%= cls %>">
+  <% if (field.type === 'checkbox') { %>
+    <label class="checkbox">
+      <input type="checkbox" id="<%= id %>" name="<%= field.key %>" value="1" <%= value ? 'checked' : '' %>>
+      <span><%= field.label %></span>
+    </label>
+  <% } else { %>
+    <label for="<%= id %>"><%= field.label %></label>
+
+    <% if (field.type === 'textarea') { %>
+      <textarea id="<%= id %>" name="<%= field.key %>" rows="<%= field.rows || 4 %>"
+                <%= field.maxlength ? 'maxlength=' + field.maxlength : '' %>
+                <%= field.required ? 'required' : '' %>><%= value %></textarea>
+
+    <% } else if (field.type === 'markdown') { %>
+      <div class="editor" data-editor>
+        <div class="editor__bar">
+          <button class="editor__btn" type="button" data-md="h2">Überschrift</button>
+          <button class="editor__btn" type="button" data-md="bold">Fett</button>
+          <button class="editor__btn" type="button" data-md="italic">Kursiv</button>
+          <button class="editor__btn" type="button" data-md="ul">Liste</button>
+          <button class="editor__btn" type="button" data-md="link">Link</button>
+          <button class="editor__btn" type="button" data-md="quote">Zitat</button>
+          <button class="editor__btn is-active" type="button" data-view="write">Schreiben</button>
+          <button class="editor__btn" type="button" data-view="preview">Vorschau</button>
+        </div>
+        <textarea id="<%= id %>" name="<%= field.key %>" rows="<%= field.rows || 16 %>"
+                  data-editor-input><%= value %></textarea>
+        <div class="editor__preview prose" data-editor-preview hidden></div>
+      </div>
+
+    <% } else if (field.type === 'select') { %>
+      <select id="<%= id %>" name="<%= field.key %>">
+        <% field.options.forEach(function (opt) { %>
+          <option value="<%= opt.value %>" <%= String(value) === opt.value ? 'selected' : '' %>><%= opt.label %></option>
+        <% }); %>
+      </select>
+
+    <% } else if (field.type === 'number') { %>
+      <input id="<%= id %>" type="number" name="<%= field.key %>" value="<%= value %>" step="1">
+
+    <% } else if (field.type === 'date') { %>
+      <input id="<%= id %>" type="date" name="<%= field.key %>"
+             value="<%= String(value).slice(0, 10) %>" <%= field.required ? 'required' : '' %>>
+
+    <% } else if (field.type === 'datetime') { %>
+      <input id="<%= id %>" type="datetime-local" name="<%= field.key %>"
+             value="<%= String(value).replace(' ', 'T').slice(0, 16) %>" <%= field.required ? 'required' : '' %>>
+
+    <% } else if (field.type === 'image' || field.type === 'file') { %>
+      <div class="upload">
+        <% if (value) { %>
+          <div class="upload__preview">
+            <% if (field.type === 'image') { %><img src="<%= value %>" alt=""><% } else { %><%- icon('file') %><% } %>
+            <span>
+              <a href="<%= value %>" target="_blank" rel="noopener"><%= value %></a><br>
+              <label class="checkbox checkbox--tight">
+                <input type="checkbox" name="<%= field.key %>__clear" value="1">
+                <span>Entfernen</span>
+              </label>
+            </span>
+          </div>
+        <% } %>
+        <input type="file" id="<%= id %>-upload" name="upload_<%= field.key %>"
+               accept="<%= field.type === 'image' ? 'image/*' : '.pdf,image/*,.doc,.docx,.xls,.xlsx,.txt' %>">
+        <input type="text" id="<%= id %>" name="<%= field.key %>" value="<%= value %>"
+               placeholder="<%= field.type === 'image' ? '/uploads/bild.jpg' : '/uploads/datei.pdf' %> – oder Datei oben auswählen">
+      </div>
+
+    <% } else { %>
+      <input id="<%= id %>" type="text" name="<%= field.key %>" value="<%= value %>"
+             <%= field.maxlength ? 'maxlength=' + field.maxlength : '' %>
+             <%= field.required ? 'required' : '' %>>
+    <% } %>
+
+    <% if (field.hint) { %><span class="field__hint"><%= field.hint %></span><% } %>
+  <% } %>
+</div>

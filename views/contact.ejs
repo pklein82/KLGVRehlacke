@@ -1,0 +1,117 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<%- include('partials/page-head', {
+  crumbs: [{ label: 'Kontakt' }],
+  kicker: 'Kontakt',
+  heading: 'Kontakt aufnehmen',
+  lead: 'Schreiben Sie der Vereinsleitung – oder kommen Sie in die Sprechstunde im Vereinshaus.',
+}) %>
+
+<section class="section wrap">
+  <div class="contact-grid">
+    <div>
+      <%- include('partials/flash') %>
+
+      <% if (errors.length) { %>
+        <div class="notice notice--error" role="alert">
+          <%- icon('alert') %>
+          <div>
+            <p class="mb-0"><strong>Bitte prüfen Sie Ihre Eingaben:</strong></p>
+            <ul><% errors.forEach(function (e) { %><li><%= e %></li><% }); %></ul>
+          </div>
+        </div>
+      <% } %>
+
+      <form class="form card" method="post" action="/kontakt">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+        <div class="form-row form-row--2">
+          <div class="field field--required">
+            <label for="c-name">Name</label>
+            <input id="c-name" type="text" name="name" required maxlength="120" value="<%= form.name || '' %>">
+          </div>
+          <div class="field field--required">
+            <label for="c-email">E-Mail</label>
+            <input id="c-email" type="email" name="email" required maxlength="160" value="<%= form.email || '' %>">
+          </div>
+        </div>
+
+        <div class="form-row form-row--2">
+          <div class="field">
+            <label for="c-phone">Telefon</label>
+            <input id="c-phone" type="tel" name="phone" maxlength="60" value="<%= form.phone || '' %>">
+          </div>
+          <div class="field">
+            <label for="c-parcel">Parzelle</label>
+            <input id="c-parcel" type="text" name="parcel" maxlength="40" value="<%= form.parcel || '' %>"
+                   placeholder="falls Mitglied">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="c-subject">Betreff</label>
+          <input id="c-subject" type="text" name="subject" maxlength="160" value="<%= form.subject || '' %>">
+        </div>
+
+        <div class="field field--required">
+          <label for="c-body">Ihre Nachricht</label>
+          <textarea id="c-body" name="body" required maxlength="4000"><%= form.body || '' %></textarea>
+        </div>
+
+        <p class="field__hint mb-0">
+          Wir verwenden Ihre Daten nur zur Bearbeitung dieser Anfrage – siehe
+          <a href="/datenschutz">Datenschutzerklärung</a>.
+        </p>
+
+        <div>
+          <button class="btn btn--solid" type="submit"><%- icon('mail') %> Nachricht senden</button>
+        </div>
+      </form>
+    </div>
+
+    <aside>
+      <div class="aside-box">
+        <h2>Vereinsanschrift</h2>
+        <ul class="contact-list">
+          <li>
+            <%- icon('pin') %>
+            <div>
+              <strong>Adresse</strong>
+              <%= settings.club_name %><br>
+              <%= settings.street %><br>
+              <%= settings.zip %> <%= settings.city %>
+            </div>
+          </li>
+          <% if (settings.phone) { %>
+          <li>
+            <%- icon('phone') %>
+            <div><strong>Telefon</strong><a href="tel:<%= settings.phone.replace(/\s/g, '') %>"><%= settings.phone %></a></div>
+          </li>
+          <% } %>
+          <% if (settings.email) { %>
+          <li>
+            <%- icon('mail') %>
+            <div><strong>E-Mail</strong><a href="mailto:<%= settings.email %>"><%= settings.email %></a></div>
+          </li>
+          <% } %>
+          <% if (settings.office_hours) { %>
+          <li>
+            <%- icon('clock') %>
+            <div><strong>Sprechstunde</strong><%= settings.office_hours %></div>
+          </li>
+          <% } %>
+        </ul>
+      </div>
+
+      <div class="aside-box">
+        <h2>Anfahrt</h2>
+        <p class="text-sm">Die Anlage liegt in der Donaustadt und ist mit öffentlichen Verkehrsmitteln
+        sowie über den Donauradweg gut erreichbar.</p>
+        <a class="link-more" href="/lageplan">Lageplan ansehen <%- icon('arrow') %></a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

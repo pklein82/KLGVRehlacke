@@ -1,0 +1,22 @@
+# Abhängigkeiten
+node_modules/
+
+# Laufzeitdaten – bleiben auf dem Server, nicht im Repository
+data/
+uploads/*
+!uploads/.gitkeep
+
+# Konfiguration mit Zugangsdaten
+.env
+.env.local
+
+# Betriebssystem und Editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Protokolle
+*.log
+npm-debug.log*

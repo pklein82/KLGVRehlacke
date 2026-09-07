@@ -1,0 +1,73 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<%- include('partials/page-head', {
+  crumbs: [{ label: 'Impressum' }],
+  kicker: 'Offenlegung',
+  heading: 'Impressum',
+  lead: 'Angaben gemäß § 5 E-Commerce-Gesetz und § 25 Mediengesetz.',
+}) %>
+
+<section class="section wrap">
+  <div class="with-aside">
+    <div class="prose">
+      <h2>Medieninhaber und Herausgeber</h2>
+      <p>
+        <strong><%= settings.club_name %></strong><br>
+        <%= settings.street %><br>
+        <%= settings.zip %> <%= settings.city %>, Österreich
+      </p>
+
+      <table>
+        <tbody>
+          <% if (settings.zvr) { %><tr><th>ZVR-Zahl</th><td><%= settings.zvr %></td></tr><% } %>
+          <% if (settings.phone) { %><tr><th>Telefon</th><td><%= settings.phone %></td></tr><% } %>
+          <% if (settings.email) { %><tr><th>E-Mail</th><td><%= settings.email %></td></tr><% } %>
+          <tr><th>Vereinssitz</th><td><%= settings.zip %> <%= settings.city %></td></tr>
+        </tbody>
+      </table>
+
+      <h2>Unternehmensgegenstand</h2>
+      <p>Ideeller, nicht auf Gewinn gerichteter Verein zur Förderung des Kleingartenwesens.</p>
+
+      <h2>Vertretungsbefugte Organe</h2>
+      <ul>
+        <% board.forEach(function (person) { %>
+          <li><strong><%= person.role %>:</strong> <%= person.name %></li>
+        <% }); %>
+      </ul>
+
+      <h2>Grundlegende Richtung</h2>
+      <p>
+        Information der Mitglieder des Vereins über Vereinsangelegenheiten, Termine und
+        Themen des Kleingartenwesens.
+      </p>
+
+      <h2>Haftung für Inhalte</h2>
+      <p>
+        Die Inhalte dieser Website werden mit Sorgfalt erstellt. Für die Richtigkeit,
+        Vollständigkeit und Aktualität kann jedoch keine Gewähr übernommen werden.
+        Für Inhalte verlinkter externer Seiten ist ausschließlich deren Betreiber verantwortlich.
+      </p>
+
+      <h2>Urheberrecht</h2>
+      <p>
+        Texte und Bilder auf dieser Website sind urheberrechtlich geschützt. Eine Verwendung
+        außerhalb der gesetzlichen Grenzen bedarf der Zustimmung des Vereins.
+      </p>
+    </div>
+
+    <aside class="aside--sticky">
+      <div class="aside-box">
+        <h2>Rechtliches</h2>
+        <ul class="aside-nav">
+          <li><a href="/impressum" aria-current="page">Impressum</a></li>
+          <li><a href="/datenschutz">Datenschutz</a></li>
+          <li><a href="/vereinsleitung">Vereinsleitung</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

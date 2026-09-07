@@ -1,0 +1,56 @@
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__about">
+        <h2>Der Verein</h2>
+        <p><%= settings.club_name %></p>
+        <p><%= settings.footer_note %></p>
+      </div>
+
+      <div>
+        <h2>Kontakt</h2>
+        <ul class="footer__list">
+          <li><%= settings.street %></li>
+          <li><%= settings.zip %> <%= settings.city %></li>
+          <% if (settings.phone) { %><li><a href="tel:<%= settings.phone.replace(/\s/g, '') %>"><%= settings.phone %></a></li><% } %>
+          <% if (settings.email) { %><li><a href="mailto:<%= settings.email %>"><%= settings.email %></a></li><% } %>
+        </ul>
+      </div>
+
+      <div>
+        <h2>Verein</h2>
+        <ul class="footer__list">
+          <li><a href="/aktuelles">Aktuelles</a></li>
+          <li><a href="/termine">Termine</a></li>
+          <li><a href="/vereinsleitung">Vereinsleitung</a></li>
+          <li><a href="/downloads">Downloads</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2>Service</h2>
+        <ul class="footer__list">
+          <li><a href="/flohmarkt">Ich biete / Ich suche</a></li>
+          <li><a href="/kontakt">Kontakt</a></li>
+          <li><a href="/impressum">Impressum</a></li>
+          <li><a href="/datenschutz">Datenschutz</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="mb-0">&copy; <%= year %> <%= settings.club_name %><% if (settings.zvr) { %> &middot; ZVR <%= settings.zvr %><% } %></p>
+      <nav aria-label="Rechtliches">
+        <a href="/impressum">Impressum</a>
+        <a href="/datenschutz">Datenschutz</a>
+        <a href="/admin">Redaktion</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<%- include('partials/head') %>
+<body class="admin">
+<div class="login-page">
+  <form class="login-card" method="post" action="/admin/login">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+    <span class="login-card__mark"><%- icon('leaf') %></span>
+    <h1>Redaktion</h1>
+    <p class="login-card__sub"><%= settings.site_title %> – Inhalte bearbeiten</p>
+
+    <% if (error) { %>
+      <div class="notice notice--error" role="alert">
+        <%- icon('alert') %>
+        <div><p class="mb-0"><%= error %></p></div>
+      </div>
+    <% } %>
+
+    <div class="form">
+      <div class="field">
+        <label for="email">E-Mail-Adresse</label>
+        <input id="email" type="email" name="email" required autocomplete="username"
+               autofocus value="<%= email %>">
+      </div>
+      <div class="field">
+        <label for="password">Kennwort</label>
+        <input id="password" type="password" name="password" required autocomplete="current-password">
+      </div>
+      <button class="btn btn--solid btn--block" type="submit">Anmelden</button>
+    </div>
+
+    <p class="login-card__foot"><a href="/">Zurück zur Website</a></p>
+  </form>
+</div>
+</body>
+</html>

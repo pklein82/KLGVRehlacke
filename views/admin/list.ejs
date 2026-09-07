@@ -1,0 +1,82 @@
+<%- include('partials/head') %>
+<%- include('partials/shell-top') %>
+
+<div class="admin-head">
+  <div>
+    <h1><%= def.label %></h1>
+    <p><%= rows.length %> Einträge</p>
+  </div>
+  <div class="admin-head__actions">
+    <% if (def.publicPath) { %>
+      <a class="btn btn--outline btn--sm" href="<%= def.publicPath(rows[0] || {}) %>" target="_blank" rel="noopener">
+        <%- icon('external') %> Auf der Website
+      </a>
+    <% } %>
+    <a class="btn btn--solid btn--sm" href="/admin/inhalt/<%= resource %>/neu">
+      <%- icon('check') %> <%= def.singular %> anlegen
+    </a>
+  </div>
+</div>
+
+<%- include('partials/flash') %>
+
+<div class="panel">
+  <% if (!rows.length) { %>
+    <div class="panel__body">
+      <p class="text-muted">Noch keine Einträge vorhanden.</p>
+      <a class="btn btn--solid btn--sm" href="/admin/inhalt/<%= resource %>/neu">Ersten <%= def.singular %> anlegen</a>
+    </div>
+  <% } else { %>
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <% def.columns.forEach(function (col) { %><th><%= col.label %></th><% }); %>
+            <th class="table__actions">Aktion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% rows.forEach(function (row) { %>
+            <tr>
+              <% def.columns.forEach(function (col) { const value = row[col.key]; %>
+                <td<%- col.primary ? ' class="table__primary"' : '' %>>
+                  <% if (col.primary) { %>
+                    <a href="/admin/inhalt/<%= resource %>/<%= row.id %>"><%= value || '(ohne Titel)' %></a>
+                  <% } else if (col.type === 'status') { %>
+                    <span class="pill pill--<%= value ? 'on' : 'off' %>"><%= value ? 'Veröffentlicht' : 'Entwurf' %></span>
+                  <% } else if (col.type === 'moderation') { %>
+                    <% const labels = { pending: ['warn', 'Wartet auf Prüfung'], published: ['on', 'Veröffentlicht'], rejected: ['off', 'Abgelehnt'] };
+                       const [tone, label] = labels[value] || ['off', value]; %>
+                    <span class="pill pill--<%= tone %>"><%= label %></span>
+                  <% } else if (col.type === 'flag') { %>
+                    <%= value ? 'Ja' : '–' %>
+                  <% } else if (col.type === 'date') { %>
+                    <%= h.formatDate(value) %>
+                  <% } else if (col.type === 'datetime') { %>
+                    <%= h.formatEventRange({ starts_at: value, ends_at: '', all_day: row.all_day }) %>
+                  <% } else if (col.type === 'filelink') { %>
+                    <% if (value) { %><a href="<%= value %>" target="_blank" rel="noopener">Datei</a>
+                    <% } else if (row.link) { %><a href="<%= row.link %>" target="_blank" rel="noopener">Link</a>
+                    <% } else { %><span class="text-muted">–</span><% } %>
+                  <% } else { %>
+                    <%= value || '' %>
+                  <% } %>
+                </td>
+              <% }); %>
+              <td class="table__actions">
+                <a class="btn btn--outline btn--sm" href="/admin/inhalt/<%= resource %>/<%= row.id %>">Bearbeiten</a>
+                <form method="post" action="/admin/inhalt/<%= resource %>/<%= row.id %>/loeschen"
+                      data-confirm="<%= def.singular %> „<%= (row.title || row.name || row.role || '').replace(/"/g, '') %>“ wirklich löschen?">
+                  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                  <button class="btn btn--outline btn--sm" type="submit">Löschen</button>
+                </form>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+</div>
+
+<%- include('partials/shell-bottom') %>

@@ -1,0 +1,44 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<%- include('partials/page-head', {
+  crumbs: [{ label: 'Aktuelles', href: '/aktuelles' }, { label: item.title }],
+  kicker: h.formatDate(item.published_at, { weekday: true }),
+  heading: item.title,
+  lead: item.excerpt,
+}) %>
+
+<section class="section wrap">
+  <div class="with-aside">
+    <article>
+      <% if (item.image) { %>
+        <img class="article-image" src="<%= item.image %>" alt="">
+      <% } %>
+      <div class="prose"><%- html %></div>
+
+      <p class="mt-2">
+        <a class="link-more" href="/aktuelles"><%- icon('arrow') %> Alle Beiträge</a>
+      </p>
+    </article>
+
+    <aside class="aside--sticky">
+      <% if (more.length) { %>
+        <div class="aside-box">
+          <h2>Weitere Beiträge</h2>
+          <ul class="aside-nav">
+            <% more.forEach(function (other) { %>
+              <li><a href="/aktuelles/<%= other.slug %>"><%= other.title %></a></li>
+            <% }); %>
+          </ul>
+        </div>
+      <% } %>
+      <div class="aside-box">
+        <h2>Fragen?</h2>
+        <p class="text-muted text-sm">Die Vereinsleitung hilft gerne weiter.</p>
+        <a class="btn btn--outline btn--sm" href="/kontakt"><%- icon('mail') %> Kontakt</a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

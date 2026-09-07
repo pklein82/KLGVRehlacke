@@ -1,0 +1,55 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<%- include('partials/page-head', {
+  crumbs: [{ label: 'Vereinsleitung' }],
+  kicker: 'Funktionen',
+  heading: 'Vereinsleitung',
+  lead: 'Die Vereinsleitung wird von der Hauptversammlung gewählt und führt die laufenden Geschäfte des Vereins.',
+}) %>
+
+<section class="section wrap">
+  <% if (!board.length) { %>
+    <div class="empty"><p class="mb-0">Die Funktionen werden gerade aktualisiert.</p></div>
+  <% } else { %>
+    <div class="grid grid--3">
+      <% board.forEach(function (person) { %>
+        <article class="card reveal">
+          <div class="person">
+            <span class="person__avatar">
+              <% if (person.photo) { %>
+                <img src="<%= person.photo %>" alt="">
+              <% } else { %>
+                <%= person.name.split(/\s+/).map(w => w[0]).slice(0, 2).join('') %>
+              <% } %>
+            </span>
+            <div>
+              <span class="person__role"><%= person.role %></span>
+              <p class="person__name"><%= person.name %></p>
+            </div>
+          </div>
+
+          <% if (person.email || person.phone || person.note) { %>
+            <div class="person__contact mt-1">
+              <% if (person.email) { %><span><a href="mailto:<%= person.email %>"><%= person.email %></a></span><% } %>
+              <% if (person.phone) { %><span><a href="tel:<%= person.phone.replace(/\s/g, '') %>"><%= person.phone %></a></span><% } %>
+              <% if (person.note) { %><span class="text-muted"><%= person.note %></span><% } %>
+            </div>
+          <% } %>
+        </article>
+      <% }); %>
+    </div>
+  <% } %>
+
+  <div class="notice notice--info mt-3">
+    <%- icon('info') %>
+    <div>
+      <p class="mb-0">
+        Anliegen bringen Sie am besten in der Sprechstunde vor: <%= settings.office_hours %>
+        Alternativ nutzen Sie das <a href="/kontakt">Kontaktformular</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

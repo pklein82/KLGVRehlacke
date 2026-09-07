@@ -1,0 +1,67 @@
+<%- include('partials/head') %>
+<%- include('partials/shell-top') %>
+
+<div class="admin-head">
+  <div>
+    <h1>Medien</h1>
+    <p><%= items.length %> Dateien. Kopieren Sie den Pfad, um ein Bild in einem Beitrag zu verwenden.</p>
+  </div>
+</div>
+
+<%- include('partials/flash') %>
+
+<div class="panel">
+  <div class="panel__head"><h2>Dateien hochladen</h2></div>
+  <div class="panel__body">
+    <form method="post" action="/admin/medien" enctype="multipart/form-data" class="form">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <div class="field">
+        <label for="m-files">Bilder oder Dokumente auswählen</label>
+        <input id="m-files" type="file" name="files" multiple required
+               accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.txt">
+        <span class="field__hint">Maximal 8 Dateien, je bis 8 MB. Erlaubt: JPG, PNG, WebP, GIF, SVG, PDF, Office, TXT.</span>
+      </div>
+      <div>
+        <button class="btn btn--solid btn--sm" type="submit"><%- icon('download') %> Hochladen</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel__head"><h2>Mediathek</h2></div>
+  <div class="panel__body">
+    <% if (!items.length) { %>
+      <p class="text-muted mb-0">Noch keine Dateien hochgeladen.</p>
+    <% } else { %>
+      <div class="media-grid">
+        <% items.forEach(function (item) { const isImage = item.mime.startsWith('image/'); %>
+          <div class="media-item">
+            <a class="media-item__thumb" href="<%= item.file %>" target="_blank" rel="noopener">
+              <% if (isImage) { %>
+                <img src="<%= item.file %>" alt="<%= item.original %>" loading="lazy">
+              <% } else { %>
+                <%- icon('file') %>
+              <% } %>
+            </a>
+            <div class="media-item__body">
+              <span class="media-item__name" title="<%= item.original %>"><%= item.original %></span>
+              <span class="media-item__meta"><%= Math.max(1, Math.round(item.size / 1024)) %> KB &middot; <%= h.formatDate(item.created_at) %></span>
+              <input class="media-item__path" type="text" value="<%= item.file %>" readonly
+                     data-copy aria-label="Pfad zum Kopieren">
+            </div>
+            <div class="media-item__foot">
+              <form method="post" action="/admin/medien/<%= item.id %>/loeschen"
+                    data-confirm="Datei „<%= item.original.replace(/"/g, '') %>“ endgültig löschen?">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <button class="btn btn--outline btn--sm" type="submit">Löschen</button>
+              </form>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    <% } %>
+  </div>
+</div>
+
+<%- include('partials/shell-bottom') %>

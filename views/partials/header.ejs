@@ -1,0 +1,51 @@
+<body class="<%= bodyClass || '' %>">
+<a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+<header class="site-header" id="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="/">
+      <span class="brand__mark"><%- icon('leaf') %></span>
+      <span class="brand__text">
+        <span class="brand__name"><%= settings.site_title %></span>
+        <span class="brand__sub"><%= settings.site_subtitle %></span>
+      </span>
+    </a>
+
+    <nav class="nav" id="primary-nav" aria-label="Hauptnavigation">
+      <%
+        const isActive = (href) => (href === '/'
+          ? currentPath === '/'
+          : currentPath === href || currentPath.startsWith(href + '/'));
+      %>
+      <% nav.forEach(function (item) { %>
+        <% if (!item.children) { %>
+          <a href="<%= item.href %>"<%- isActive(item.href) ? ' aria-current="page"' : '' %>><%= item.label %></a>
+        <% } else { const open = item.children.some((c) => isActive(c.href)); %>
+          <details class="nav-group">
+            <summary<%- open ? ' class="is-active"' : '' %>>
+              <%= item.label %><%- icon('arrow', 'nav-group__chevron') %>
+            </summary>
+            <div class="nav-group__panel">
+              <% item.children.forEach(function (child) { %>
+                <a href="<%= child.href %>"<%- isActive(child.href) ? ' aria-current="page"' : '' %>><%= child.label %></a>
+              <% }); %>
+            </div>
+          </details>
+        <% } %>
+      <% }); %>
+    </nav>
+
+    <div class="header__actions">
+      <button class="icon-btn" type="button" id="theme-toggle"
+              aria-label="Zwischen hellem und dunklem Design wechseln">
+        <%- icon('moon', 'icon-moon') %><%- icon('sun', 'icon-sun') %>
+      </button>
+      <button class="icon-btn nav-toggle" type="button" id="nav-toggle"
+              aria-controls="primary-nav" aria-expanded="false" aria-label="Menü öffnen">
+        <%- icon('menu', 'icon-menu') %>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
