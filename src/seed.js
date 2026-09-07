@@ -11,28 +11,31 @@ const { db, setSettings, SETTING_DEFAULTS } = require('./db');
 const PAGES = [
   {
     slug: 'verein',
-    title: 'Der Verein',
-    nav_title: 'Verein',
+    title: 'Vereinsinformationen',
+    nav_title: 'Vereinsinformationen',
     section: 'verein',
     position: 10,
-    intro: 'Wer wir sind, wie der Verein organisiert ist und wo Sie Unterstützung finden.',
-    body: `## Über uns
+    intro: 'Wer wir sind – und warum wir derzeit keine Anmeldungen entgegennehmen können.',
+    body: `> **Keine Anmeldungen möglich**
+>
+> Sehr geehrte Besucher, falls Sie auf der Suche nach einem Kleingarten sind, hier die schlechte Nachricht: bedingt durch die starke Nachfrage nach Kleingärten und die Länge unserer Warteliste, nehmen wir bis auf weiteres keine Anmeldungen entgegen.
 
-Der **Kleingartenverein An der Rehlacke** liegt in der Wiener Donaustadt und bietet seinen Mitgliedern Parzellen zur Erholung, zum Gärtnern und für ein gutes nachbarschaftliches Miteinander.
+## Die Anlage
 
-Der Verein ist Mitglied im *Zentralverband der Kleingärtner und Siedler Österreichs* und verwaltet die Anlage im Auftrag der Stadt Wien.
+Der Kleingartenverein An der Rehlacke liegt in der Wiener Donaustadt und umfasst rund 160 Parzellen. Der Verein besteht seit 1958 und ist Mitglied im Zentralverband der Kleingärtner und Siedler Österreichs.
 
 ## Organisation
 
-Die Vereinsleitung wird von der Hauptversammlung gewählt und führt die laufenden Geschäfte. Grundlage dafür sind die Statuten, die Gartenordnung und die Beschlüsse der Hauptversammlung.
+Oberstes Organ des Vereins ist die Hauptversammlung. Sie wählt die Vereinsleitung und beschließt die Grundsätze des Vereinslebens. Grundlage der täglichen Arbeit sind die Statuten, die Gartenordnung und die Beschlüsse der Hauptversammlung.
 
-- **Hauptversammlung** – oberstes Organ, beschließt Beiträge und Grundsätze
-- **Vereinsleitung** – Obmann/Obfrau, Kassier, Schriftführung und weitere Funktionen
-- **Gartenfachberatung** – kostenlose Beratung für alle Mitglieder
+- [Vereinsleitung](/vereinsleitung) – Funktionen und Erreichbarkeit
+- [Statuten und Gartenordnung](/downloads) – im Downloadbereich
+- [Beschlüsse der Hauptversammlung](/beschluesse-hv)
+- [Ruhezeiten](/ruhezeiten) und [Kosten](/kosten)
 
 ## Anliegen und Fragen
 
-Für Anliegen steht die Vereinsleitung in der Sprechstunde im Vereinshaus zur Verfügung. Schriftliche Anfragen richten Sie bitte an die im Kontakt angegebene Adresse.`,
+Sprechstunden sind jederzeit nach persönlicher oder telefonischer Voranmeldung möglich. Rufen Sie dazu bitte **0699 116 70 583** an oder nutzen Sie das [Kontaktformular](/kontakt).`,
   },
   {
     slug: 'ruhezeiten',
@@ -41,89 +44,150 @@ Für Anliegen steht die Vereinsleitung in der Sprechstunde im Vereinshaus zur Ve
     section: 'verein',
     position: 20,
     intro: 'Damit sich alle erholen können, gelten in der Anlage verbindliche Ruhezeiten.',
-    body: `## Allgemeine Ruhezeiten
+    body: `Sehr geehrte Mitglieder,
 
-Zur Vermeidung unnötigen Lärms sind folgende Zeiten einzuhalten:
+zwischen **15. April und 15. September** gilt die Mittagsruhe.
 
-- **Täglich von 22:00 – 06:00 Uhr**
-- **Montag bis Samstag von 12:00 – 15:00 Uhr**
-- **Sonn- und Feiertags ab 12:00 Uhr**
+## Bitte vermeiden Sie zu folgenden Zeiten unnötigen Lärm
 
-## Mittagsruhe im Sommer
+- **Täglich** von 22:00 – 06:00 Uhr
+- **Montag bis Samstag** von 12:00 – 15:00 Uhr
+- **Sonn- und Feiertag** ab 12:00 Uhr
 
-Zwischen **15. April und 15. September** gilt zusätzlich die Mittagsruhe. An Sonn- und Feiertagen sind lärmerregende Arbeiten in diesem Zeitraum nur von **09:00 – 12:00 Uhr** erlaubt.
+An Sonn- und Feiertagen sind lärmende Arbeiten außerdem nur zwischen **09:00 und 12:00 Uhr** gestattet.
 
 ## Bauarbeiten
 
-In den Monaten **Juli und August** dürfen weder Abbruch- und Aushubarbeiten noch bewilligungspflichtige Bauarbeiten (MA 37) durchgeführt werden.
+In den Monaten **Juli und August** dürfen weder Abbruch- und Aushubarbeiten noch von der MA 37 bewilligungspflichtige Bauarbeiten durchgeführt werden.
 
-> Lärmerregende Geräte wie Rasenmäher, Motorsägen oder Häcksler sind außerhalb der Ruhezeiten zu verwenden. Bitte nehmen Sie Rücksicht auf Ihre Nachbarschaft.`,
+## Außentore
+
+Während der Sommerzeit bleiben die Außentore der Anlage bis zum Einbruch der Dunkelheit geöffnet.
+
+*Grundlage: § 7 der Gartenordnung sowie die Beschlüsse der Hauptversammlungen vom 20. April 2018 und 19. April 2024 – siehe [Beschlüsse der Hauptversammlung](/beschluesse-hv).*`,
   },
   {
     slug: 'kosten',
-    title: 'Kosten',
+    title: 'Kosten 2026',
     nav_title: 'Kosten',
     section: 'verein',
     position: 30,
-    intro: 'Womit Mitglieder rechnen: Pacht, Beiträge und laufende Abgaben im Überblick.',
-    body: `## Laufende Kosten
+    intro: 'Pacht, Beiträge und laufende Abgaben je Parzelle im Überblick.',
+    body: `## Vorschreibung Pächter
 
-Die Kosten eines Kleingartens setzen sich aus mehreren Bestandteilen zusammen. Die genauen Beträge werden jährlich von der Hauptversammlung bzw. dem Zentralverband festgelegt.
+| Position | Entgelt/m² |
+| --- | --- |
+| Pacht inkl. Grundsteuer | 1,76 €/m² |
+| Gemeinschaftsflächen | 1,76 €/m² |
+| Zuschlag „größer bauen" | 1,40 €/m² |
+| Zuschlag „ständig wohnen" | 0,968 €/m² |
 
-| Position | Wofür | Abrechnung |
-| --- | --- | --- |
-| Pachtzins | Nutzung der Parzelle | jährlich |
-| Mitgliedsbeitrag | Verein und Zentralverband | jährlich |
-| Verwaltungskosten | Betrieb der Anlage | jährlich |
-| Wasser | Verbrauch nach Zähler | jährlich |
-| Strom | Verbrauch nach Zähler | jährlich |
-| Versicherung | Rechtsschutz und Haftpflicht | jährlich |
+## Vorschreibung Eigentümer
+
+| Position | Entgelt/m² |
+| --- | --- |
+| Pacht inkl. Grundsteuer | 0,00 €/m² |
+| Gemeinschaftsflächen | 1,76 €/m² |
+| Zuschlag „größer bauen" | 0,00 €/m² |
+| Zuschlag „ständig wohnen" | 0,00 €/m² |
+
+## Beiträge je Parzelle
+
+| Position | Entgelt |
+| --- | --- |
+| Mitgliedsbeitrag Zentral- und Landesverband, BO | 16,66 € |
+| Pauschale zur Abdeckung gemeinsamer Kosten | 70,00 € |
+| Wassergebühr | 3,76 €/m³ |
+| Müll für 120 l, 52 Entleerungen | 216,75 € |
 
 ## Zahlung
 
-Die Vorschreibung erfolgt schriftlich. Bitte geben Sie bei der Überweisung immer **Parzellennummer und Name** als Zahlungsreferenz an.
+Die Vorschreibung erfolgt schriftlich. Bitte geben Sie bei der Überweisung immer **Parzellennummer und Name** als Zahlungsreferenz an.`,
+  },
+  {
+    slug: 'beschluesse-hv',
+    title: 'Beschlüsse der Hauptversammlung',
+    nav_title: 'Beschlüsse HV',
+    section: 'verein',
+    position: 40,
+    intro: 'Die gültigen Beschlüsse der Hauptversammlungen, chronologisch geordnet.',
+    body: `## Hauptversammlung vom 19. April 2024
 
-*Die aktuellen Beträge entnehmen Sie der jährlichen Vorschreibung oder erfragen Sie in der Sprechstunde.*`,
+In den Monaten Juli und August dürfen weder Abbruch- und Aushubarbeiten noch von der MA 37 bewilligungspflichtige Bauarbeiten durchgeführt werden.
+
+## Hauptversammlung vom 20. April 2018
+
+- Änderung der Ruhezeiten: Die in § 7 Gartenordnung angeführten Ruhezeiten gelten nun nicht mehr während der Sommerzeit, sondern zwischen 15. April und 15. September.
+
+## Hauptversammlung vom 21. April 2017
+
+- Der Obmann verfügt über ein Budget von 1.000 €.
+- Ausgaben bis 10.000 € entscheidet die Vereinsleitung.
+- Investitionen über 10.000 € bedürfen der Zustimmung der Hauptversammlung.
+
+## Hauptversammlung vom 29. April 2011
+
+- Erhöhung der Vereinsumlage auf 70 € pro Jahr und Parzelle.`,
   },
   {
     slug: 'gartenfachberatung',
     title: 'Gartenfachberatung',
     nav_title: 'Gartenfachberatung',
     section: 'verein',
-    position: 40,
-    intro: 'Kostenlose fachliche Beratung rund um Boden, Pflanzen und Pflanzenschutz.',
-    body: `## Beratung für Mitglieder
+    position: 50,
+    intro: 'Hinweise der Fachberatung, Aushänge und die Biotonnen des Vereins.',
+    body: `## Biotonnen ausleihen
 
-Die Gartenfachberatung unterstützt alle Mitglieder kostenlos bei Fragen zu:
+Sie können gerne **Biotonnen beim Vereinshaus ausleihen**. Dazu bitte SMS oder Anruf an Michael Stocker (**0699 116 70 583**), damit die Verfügbarkeit koordiniert werden kann.
 
-- Boden, Düngung und Kompostierung
-- Obstbaumschnitt und Pflege
-- Pflanzenschutz ohne Chemie
-- Auswahl geeigneter Sorten
-- Bewässerung und Trockenheit
+Die Entleerung der Biotonnen findet **bei Tor 1** statt – bitte unbedingt dort zur Entleerung bringen (auch wenn dies manchmal mühsam ist), sonst vagabundieren die Biotonnen in unserer Anlage und sind bei Bedarf nicht verfügbar.
 
-## Termin vereinbaren
+Die Entleerungstermine finden Sie unter [Müllentleerung](/muellentleerung).
 
-Am einfachsten sprechen Sie die Fachberatung in der Sprechstunde an oder hinterlassen eine Nachricht über das Kontaktformular.`,
+## Aushänge und Unterlagen
+
+Die Aushänge der Fachberatung sowie das Informationsblatt „Was gehört in die Biotonne?" liegen im [Downloadbereich](/downloads).`,
+  },
+  {
+    slug: 'muellentleerung',
+    title: 'Müllentleerung',
+    nav_title: 'Müllentleerung',
+    section: 'service',
+    position: 20,
+    intro: 'Termine für die Entleerung der Biotonnen.',
+    body: `## Termine für die Biotonnen-Entleerung
+
+- 4. und 18. Dezember 2025
+- 2., 15. und 29. Jänner 2026
+- 12. und 26. Feber 2026
+- 12. und 26. März 2026
+
+## Bitte beachten
+
+Die Entleerung findet **bei Tor 1** statt. Bringen Sie die Tonnen bitte rechtzeitig dorthin und holen Sie sie nach der Entleerung wieder ab.
+
+Biotonnen können beim Vereinshaus ausgeliehen werden – siehe [Gartenfachberatung](/gartenfachberatung).`,
   },
   {
     slug: 'lageplan',
     title: 'Lageplan',
     nav_title: 'Lageplan',
     section: 'service',
-    position: 20,
+    position: 30,
     intro: 'Orientierung in der Anlage: Tore, Wege und Parzellen.',
     body: `## Anlage und Zufahrt
 
-Die Anlage ist über die **Benatzkygasse** erreichbar. Bitte halten Sie die Tore geschlossen und die Zufahrtswege für Rettung und Feuerwehr frei.
+Die Anlage ist über die **Benatzkygasse** erreichbar. Der Vereinssitz liegt bei **Tor 1, Parzelle 1**. Bitte halten Sie die Tore geschlossen und die Zufahrtswege für Rettung und Feuerwehr frei.
+
+Während der Sommerzeit bleiben die Außentore bis zum Einbruch der Dunkelheit geöffnet.
 
 ## Anreise
 
-- **Öffentlich:** U1 bis Kaisermühlen bzw. Alte Donau, weiter mit dem Bus
+- **Öffentlich:** U1 Richtung Kaisermühlen / Alte Donau, weiter mit dem Bus
 - **Fahrrad:** über den Donauradweg
 - **Auto:** Parken ausschließlich auf den gekennzeichneten Flächen
 
-*Der detaillierte Parzellenplan liegt im Vereinshaus auf und kann im Downloadbereich als PDF hinterlegt werden.*`,
+*Der Parzellenplan kann im Redaktionsbereich als Bild oder PDF hinterlegt werden.*`,
   },
   {
     slug: 'links',
@@ -131,17 +195,45 @@ Die Anlage ist über die **Benatzkygasse** erreichbar. Bitte halten Sie die Tore
     nav_title: 'Links',
     section: 'service',
     position: 40,
-    in_nav: 0,
     intro: 'Weiterführende Seiten für Kleingärtnerinnen und Kleingärtner.',
-    body: `## Verbände
+    body: `## Recht
 
-- [Zentralverband der Kleingärtner und Siedler Österreichs](https://www.kleingaertner.at)
-- [Landesverband Wien](https://www.kleingaertner.at)
+- [Wiener Kleingartengesetz](https://www.wien.gv.at/recht/landesrecht-wien/rechtsvorschriften/html/b2400000.htm)
 
-## Stadt Wien
+## Verbände
 
-- [MA 37 – Baupolizei](https://www.wien.gv.at/wohnen/baupolizei/)
-- [Wien Umweltschutz](https://www.wien.gv.at/umwelt/)`,
+- [Zentralverband der Wiener Kleingärtner](https://www.kleingaertner.at/)`,
+  },
+  {
+    slug: 'todesfaelle',
+    title: 'Todesfälle',
+    nav_title: 'Todesfälle',
+    section: 'service',
+    position: 50,
+    intro: 'Wir gedenken der verstorbenen Mitglieder unseres Vereins.',
+    body: `**2025:** Peter Gavac
+
+**2024:** Walter Rosenkranz · Herta Budik · Edeltraud Yildirim · Herbert Hawle · Erika Heger · Christine Rosenkranz · Ernst Wunsch · Margarete Hogn
+
+**2023:** Maria Hybek
+
+**2022:** Erika Himmer · Johann Gmach
+
+**2021:** Ernst Reiter · Elisabeth Mayer · Michael Wenusch · Michael Svatos · Ina Connerth
+
+**2020:** Angela Deimböck · Anna Pfannenstiel
+
+**2019:** Gerhard Svatos · Hildegard Zech · Edgar Schöller · Herbert Etl · Otto Hofstätter
+
+**2018:** Ernst Hogn · Peter Handl · Robert Bauer · Brigitte Loidl
+
+**2017:** Franz Vorstandlechner · Engelbert Ranftl · Michaela Pfann · Herbert Pfannenstiel
+
+**2016:** Franz Richter · Kurt Palka · Karl Mayer · Eveline Andrlik
+
+**2015:** Franz Einsiedler · Kurt Novak · Robert Tscherney
+
+**2014:** Brigitta Ranftl · Frederike Wegmann · Herta Frischherz · Hannes Stadler`,
   },
   {
     slug: 'datenschutz',
@@ -153,18 +245,17 @@ Die Anlage ist über die **Benatzkygasse** erreichbar. Bitte halten Sie die Tore
     intro: 'Informationen zur Verarbeitung personenbezogener Daten auf dieser Website.',
     body: `## Verantwortlicher
 
-Verantwortlich für die Datenverarbeitung ist der Kleingartenverein An der Rehlacke. Die Kontaktdaten finden Sie im Impressum.
+Verantwortlich für die Datenverarbeitung ist der Kleingarten Verein an der Rehlacke. Die Kontaktdaten finden Sie im [Impressum](/impressum).
 
 ## Welche Daten verarbeitet werden
 
 - **Kontaktformular:** Name, E-Mail-Adresse und Ihre Nachricht, um die Anfrage zu bearbeiten.
-- **Anzeigen im Bereich „Ich biete / Ich suche“:** die von Ihnen angegebenen Kontaktdaten,
-  um die Anzeige zu veröffentlichen.
+- **Anzeigen im Bereich „Ich biete / Ich suche":** die von Ihnen angegebenen Kontaktdaten, um die Anzeige zu veröffentlichen.
 - **Server-Logfiles:** technisch notwendige Daten zum Betrieb der Website.
 
-## Cookies
+## Cookies und Tracking
 
-Diese Website setzt ausschließlich ein technisch notwendiges Cookie für die Anmeldung im Redaktionsbereich. Es findet **kein Tracking** und keine Analyse durch Dritte statt.
+Diese Website setzt ausschließlich ein technisch notwendiges Cookie für die Anmeldung im Redaktionsbereich. Es findet **kein Tracking** statt, es werden keine Analysedienste eingesetzt und keine Inhalte von Dritten nachgeladen.
 
 ## Ihre Rechte
 
@@ -174,121 +265,126 @@ Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Ve
 
 const NEWS = [
   {
-    slug: 'neue-website-ist-online',
-    title: 'Unsere neue Website ist online',
-    excerpt: 'Übersichtlicher, schneller und auch am Handy gut lesbar – die Vereinsseite in neuem Gewand.',
-    body: `Wir haben unsere Website vollständig überarbeitet. Neu sind unter anderem:
+    slug: 'achtung-einbrecher',
+    title: 'Achtung – Einbrecher',
+    excerpt: 'Bitte beachten Sie einige Sicherheitshinweise für Ihr Gartenhaus.',
+    body: `Beachten Sie einige Sicherheitshinweise:
 
-- ein **Terminkalender** mit allen Vereinsveranstaltungen,
-- ein **Downloadbereich** für Statuten, Gartenordnung und Beschlüsse,
-- der Bereich **„Ich biete / Ich suche“** für Mitglieder,
-- ein Layout, das auf **Handy, Tablet und Computer** gleich gut funktioniert.
+- Beleuchten Sie Ihre Eingangstür sowie uneinsichtige Teile Ihres Hauses.
+- Versperren Sie Leitern und sperren Sie Ihren Geräteschuppen ab.
+- Installieren Sie eine Alarmanlage.
+- Melden Sie verdächtige Personen bei der Polizei.
+- Sperren Sie die Außentore ab.
 
-Die Inhalte werden ab jetzt direkt von der Vereinsleitung gepflegt. Wenn Ihnen etwas fehlt oder Sie einen Fehler entdecken, melden Sie sich gerne über das Kontaktformular.`,
-    published_at: '2026-09-01',
+**Machen Sie Ihr Haus für Einbrecher so unattraktiv wie möglich!**`,
+    published_at: '2026-09-07',
     pinned: 1,
   },
   {
-    slug: 'wasser-aufdrehen-saisonstart',
-    title: 'Saisonstart: Wasser wird aufgedreht',
-    excerpt: 'Ab Anfang April steht die Wasserleitung in der Anlage wieder zur Verfügung.',
-    body: `Mit dem Saisonstart wird die Wasserleitung in der gesamten Anlage wieder in Betrieb genommen.
+    slug: 'nachbarschaftsrecht-am-gartenzaun',
+    title: 'Lesenswert: Streit am Gartenzaun',
+    excerpt: 'Ein Artikel zum Nachbarschaftsrecht – Grenzbepflanzung, Fallobst und Laub.',
+    body: `Hier finden Sie einen interessanten Artikel zum Thema Nachbarschaftsrecht:
 
-Bitte prüfen Sie **vorher** Ihre Hausanschlüsse und Absperrventile auf Dichtheit. Undichte Leitungen führen zu hohen Verbrauchskosten, die auf die Parzelle umgelegt werden.
-
-Der genaue Termin wird an den Anschlagtafeln bekannt gegeben.`,
-    published_at: '2026-03-20',
-  },
-  {
-    slug: 'ruhezeiten-erinnerung-sommer',
-    title: 'Erinnerung: Mittagsruhe ab 15. April',
-    excerpt: 'Von 15. April bis 15. September gilt in der Anlage zusätzlich die Mittagsruhe.',
-    body: `Wir bitten alle Mitglieder, die Ruhezeiten einzuhalten – besonders die **Mittagsruhe von 12:00 bis 15:00 Uhr** zwischen 15. April und 15. September.
-
-Lärmerregende Arbeiten sind an Sonn- und Feiertagen nur von 09:00 bis 12:00 Uhr erlaubt. Alle Details finden Sie auf der Seite [Ruhezeiten](/ruhezeiten).`,
-    published_at: '2026-04-10',
-  },
-  {
-    slug: 'gruenschnitt-sammlung',
-    title: 'Grünschnitt-Sammlung im Herbst',
-    excerpt: 'Termine und Regeln für die Abgabe von Baum- und Strauchschnitt.',
-    body: `Im Herbst wird wieder Grünschnitt gesammelt. Bitte beachten Sie:
-
-- nur **Baum- und Strauchschnitt**, keine Wurzelstöcke und keine Erde,
-- Äste auf maximal **1,5 Meter** Länge kürzen,
-- Ablage erst **am Vortag** an der gekennzeichneten Sammelstelle.
-
-Restmüll, Kunststoff oder Bauschutt gehören nicht zum Grünschnitt und verursachen zusätzliche Entsorgungskosten für alle.`,
-    published_at: '2026-08-15',
+[Grenzbepflanzung, Fallobst, Laub – Streit am Gartenzaun](https://ratgeber.immowelt.at/a/grenzbepflanzung-fallobst-laub-streit-am-gartenzaun.html)`,
+    published_at: '2026-09-07',
   },
 ];
 
 const EVENTS = [
   {
-    title: 'Sprechstunde der Vereinsleitung',
-    starts_at: '2026-10-03T10:00',
-    ends_at: '2026-10-03T12:00',
+    title: 'Spanferkelessen',
+    starts_at: '2026-06-20T17:15',
+    ends_at: '2026-06-20T22:00',
     location: 'Vereinshaus',
-    description: 'Anliegen, Formulare und Fragen – ohne Voranmeldung.',
+    description: 'Aufwärmen und Vorglühen ab 17:15, Ankunft Spanferkel 17:50, Schmausbeginn 18:00, Ende 22:00.',
   },
   {
-    title: 'Herbst-Arbeitseinsatz',
-    starts_at: '2026-10-18T09:00',
-    ends_at: '2026-10-18T13:00',
-    location: 'Gemeinschaftsflächen',
-    description: 'Wege, Hecken und Gemeinschaftsflächen winterfest machen. Werkzeug bitte mitbringen.',
-  },
-  {
-    title: 'Wasserabsperrung – Ende der Saison',
-    starts_at: '2026-11-07',
+    title: 'Feierabend',
+    starts_at: '2026-07-18',
     all_day: 1,
-    location: 'gesamte Anlage',
-    description: 'Bitte alle Leitungen entleeren und Ventile offen lassen, um Frostschäden zu vermeiden.',
+    location: 'Vereinshaus',
+    description: 'Gemeinsamer Feierabend im Verein.',
   },
   {
-    title: 'Adventfeier',
-    starts_at: '2026-12-06T16:00',
-    ends_at: '2026-12-06T20:00',
+    title: 'Feierabend',
+    starts_at: '2026-08-15',
+    all_day: 1,
     location: 'Vereinshaus',
-    description: 'Punsch, Kekse und gute Gespräche. Alle Mitglieder mit Familie sind herzlich eingeladen.',
-  },
-  {
-    title: 'Hauptversammlung',
-    starts_at: '2027-03-13T15:00',
-    ends_at: '2027-03-13T18:00',
-    location: 'Vereinshaus',
-    description: 'Berichte, Abstimmungen und Beschlüsse. Die Einladung mit Tagesordnung ergeht schriftlich.',
+    description: 'Gemeinsamer Feierabend im Verein.',
   },
 ];
 
 const BOARD = [
-  { name: 'Michael Stocker', role: 'Obmann', email: 'michael.stocker@aon.at', phone: '0699 116 70 583', position: 10, note: 'Erreichbar in der Sprechstunde und per E-Mail.' },
-  { name: 'N. N.', role: 'Obmann-Stellvertretung', position: 20, note: 'Funktion in der Vereinsleitung.' },
-  { name: 'N. N.', role: 'Kassier', position: 30, note: 'Vorschreibungen, Beiträge und Abrechnungen.' },
-  { name: 'N. N.', role: 'Schriftführung', position: 40, note: 'Protokolle und Vereinskorrespondenz.' },
-  { name: 'N. N.', role: 'Gartenfachberatung', position: 50, note: 'Beratung zu Boden, Pflanzen und Pflanzenschutz.' },
+  {
+    name: 'Michael Stocker',
+    role: 'Obmann',
+    email: 'michael.stocker@aon.at',
+    phone: '0699 116 70 583',
+    position: 10,
+    note: 'Sprechstunde nach persönlicher oder telefonischer Voranmeldung.',
+  },
+  { name: 'Manfred Loidl', role: 'Obmann-Stellvertreter', position: 20 },
+  { name: 'Ilse Meier', role: 'Kassierin', position: 30 },
+  { name: 'Barbara Gressler', role: 'Kassierin-Stellvertreterin', position: 40 },
+  { name: 'Brigitte Nuhsbaumer', role: 'Schriftführerin', position: 50 },
+  { name: 'Renate Biberle', role: 'Schriftführerin-Stellvertreterin', position: 60 },
+  { name: 'Heinz Häller', role: 'Kontrolle', position: 70 },
+  { name: 'Günther Heel', role: 'Kontrolle', position: 80 },
+  { name: 'Karl Mahr', role: 'Kontrolle', position: 90 },
 ];
 
+/*
+ * Die Dateien liegen noch beim alten Anbieter. Sie sind hier als Link
+ * eingetragen und sollten im Redaktionsbereich unter "Dokumente" hochgeladen
+ * werden, damit sie unabhängig von der alten Seite erreichbar bleiben.
+ */
 const DOCUMENTS = [
-  { title: 'Statuten des Vereins', description: 'Rechtliche Grundlage des Kleingartenvereins.', category: 'Statuten & Ordnung', position: 10 },
-  { title: 'Gartenordnung', description: 'Regeln für die Nutzung der Parzellen und Gemeinschaftsflächen.', category: 'Statuten & Ordnung', position: 20 },
-  { title: 'Beschlüsse der Hauptversammlung', description: 'Aktuelle Beschlüsse im Überblick.', category: 'Hauptversammlung', position: 30 },
-  { title: 'Bauordnung für Kleingärten', description: 'Was beim Bauen auf der Parzelle zu beachten ist.', category: 'Bauen', position: 40 },
-  { title: 'Zentralverband der Kleingärtner', description: 'Informationen und Services des Zentralverbands.', link: 'https://www.kleingaertner.at', category: 'Links', position: 50 },
+  {
+    title: 'Statuten und Gartenordnung',
+    description: 'Rechtliche Grundlage des Vereins und Regeln für die Nutzung der Parzellen (Ausgabe 2009/24).',
+    link: 'https://09c105d63b.clvaw-cdnwnd.com/86210fc4c53096f896bd009ea9d1661f/200000397-9140291404/Statuten-u.Gartenordnung-2009-24.pdf',
+    category: 'Statuten & Ordnung',
+    position: 10,
+  },
+  {
+    title: 'Aushang Frühling 2026',
+    description: 'Aushang der Gartenfachberatung für den 22. Bezirk.',
+    link: 'https://09c105d63b.clvaw-cdnwnd.com/86210fc4c53096f896bd009ea9d1661f/200000476-20f1320f15/2026-Fru%CC%88hling_Aushang_22.Bez.pdf',
+    category: 'Gartenfachberatung',
+    position: 20,
+  },
+  {
+    title: 'Was gehört in die Biotonne?',
+    description: 'Informationsblatt zur richtigen Trennung von Bioabfall.',
+    link: 'https://09c105d63b.clvaw-cdnwnd.com/86210fc4c53096f896bd009ea9d1661f/200000342-21bd721bd9/Bio-Tonnen.pdf',
+    category: 'Gartenfachberatung',
+    position: 30,
+  },
+  {
+    title: 'Wiener Kleingartengesetz',
+    description: 'Der Gesetzestext im Rechtsinformationssystem der Stadt Wien.',
+    link: 'https://www.wien.gv.at/recht/landesrecht-wien/rechtsvorschriften/html/b2400000.htm',
+    category: 'Gesetz & Verbände',
+    position: 40,
+  },
+  {
+    title: 'Zentralverband der Wiener Kleingärtner',
+    description: 'Informationen und Services des Zentralverbands.',
+    link: 'https://www.kleingaertner.at/',
+    category: 'Gesetz & Verbände',
+    position: 50,
+  },
 ];
 
-const LISTINGS = [
-  { kind: 'biete', title: 'Rasenmäher (Elektro), gut erhalten', body: 'Elektro-Rasenmäher, wenig benutzt, mit Fangkorb. Gegen kleine Spende an die Vereinskasse abzugeben.', contact: 'in der Sprechstunde', parcel: 'Parz. 42', status: 'published' },
-  { kind: 'suche', title: 'Suche Schubkarre', body: 'Für Erdarbeiten im Frühjahr, gerne auch reparaturbedürftig.', contact: 'siehe Anschlagtafel', parcel: 'Parz. 17', status: 'published' },
-  { kind: 'biete', title: 'Himbeer- und Erdbeerpflanzen', body: 'Abgebbare Ausläufer aus dem eigenen Garten, kostenlos für Vereinsmitglieder.', contact: 'in der Sprechstunde', parcel: 'Parz. 8', status: 'published' },
-];
+const LISTINGS = [];
 
 function seed() {
   setDefaultSettings();
   seedAdmin();
   insertMissing('pages', PAGES, 'slug');
   insertMissing('news', NEWS, 'slug');
-  insertMissing('events', EVENTS, 'title');
+  insertMissing('events', EVENTS, ['title', 'starts_at']);
   insertMissing('board', BOARD, null);
   insertMissing('documents', DOCUMENTS, 'title');
   insertMissing('listings', LISTINGS, 'title');
@@ -317,16 +413,22 @@ function seedAdmin() {
   }
 }
 
-/** Fügt nur Datensätze ein, die es (nach uniqueKey) noch nicht gibt. */
+/**
+ * Fügt nur Datensätze ein, die es noch nicht gibt.
+ * `uniqueKey` ist eine Spalte oder eine Liste von Spalten; ohne Angabe wird
+ * die Tabelle nur befüllt, wenn sie leer ist.
+ */
 function insertMissing(table, rows, uniqueKey) {
-  if (!uniqueKey) {
+  const keys = uniqueKey ? [].concat(uniqueKey) : null;
+  if (!keys) {
     const n = db.prepare(`SELECT COUNT(*) AS n FROM ${table}`).get().n;
     if (n > 0) return;
   }
   const tx = db.transaction(() => {
     for (const row of rows) {
-      if (uniqueKey) {
-        const found = db.prepare(`SELECT 1 FROM ${table} WHERE ${uniqueKey} = ?`).get(row[uniqueKey]);
+      if (keys) {
+        const where = keys.map((k) => `${k} = ?`).join(' AND ');
+        const found = db.prepare(`SELECT 1 FROM ${table} WHERE ${where}`).get(keys.map((k) => row[k]));
         if (found) continue;
       }
       const cols = Object.keys(row);

@@ -54,8 +54,9 @@ function tokenFrom(html) {
 test('öffentliche Seiten sind erreichbar', async () => {
   const paths = [
     '/', '/aktuelles', '/termine', '/verein', '/ruhezeiten', '/kosten',
-    '/gartenfachberatung', '/lageplan', '/vereinsleitung', '/downloads',
-    '/flohmarkt', '/kontakt', '/impressum', '/datenschutz', '/robots.txt',
+    '/beschluesse-hv', '/gartenfachberatung', '/muellentleerung', '/lageplan',
+    '/links', '/todesfaelle', '/vereinsleitung', '/downloads', '/flohmarkt',
+    '/kontakt', '/impressum', '/datenschutz', '/robots.txt',
   ];
 
   for (const p of paths) {
@@ -70,9 +71,24 @@ test('unbekannte Adresse liefert 404', async () => {
 });
 
 test('Beitrag aus den Startinhalten ist abrufbar', async () => {
-  const { status, body } = await get('/aktuelles/neue-website-ist-online');
+  const { status, body } = await get('/aktuelles/achtung-einbrecher');
   assert.equal(status, 200);
-  assert.match(body, /Terminkalender/);
+  assert.match(body, /Sicherheitshinweise/);
+});
+
+test('übernommene Vereinsdaten erscheinen auf der Website', async () => {
+  const leitung = await get('/vereinsleitung');
+  assert.match(leitung.body, /Michael Stocker/);
+  assert.match(leitung.body, /Obmann/);
+
+  const kosten = await get('/kosten');
+  assert.match(kosten.body, /1,76 €\/m²/, 'Pachtsatz aus der Kostentabelle');
+
+  const ruhe = await get('/ruhezeiten');
+  assert.match(ruhe.body, /15\. April/);
+
+  const impressum = await get('/impressum');
+  assert.match(impressum.body, /968 877 975/, 'ZVR-Zahl');
 });
 
 test('Redaktionsbereich verlangt eine Anmeldung', async () => {

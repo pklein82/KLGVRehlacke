@@ -135,11 +135,12 @@ db.exec(`
 const SETTING_DEFAULTS = {
   site_title: 'KGV An der Rehlacke',
   site_subtitle: 'Kleingartenverein in 1220 Wien',
-  hero_kicker: 'Kleingartenverein',
-  hero_title: 'Grün leben mitten in Wien',
+  hero_kicker: 'Kleingartenverein in der Donaustadt',
+  hero_title: 'Herzlich willkommen beim KGV An der Rehlacke',
   hero_text:
-    'Der Kleingartenverein An der Rehlacke in der Donaustadt ist ein Stück Natur und Nachbarschaft. '
-    + 'Hier finden Mitglieder alle Informationen rund um den Verein, Termine, Formulare und Neuigkeiten.',
+    'Die Kleingartenanlage An der Rehlacke liegt in der Wiener Donaustadt. '
+    + 'Auf diesen Seiten finden unsere Mitglieder Termine, Ruhezeiten, Kosten, '
+    + 'Beschlüsse und alle Unterlagen des Vereins.',
   hero_image: '',
   club_name: 'Kleingarten Verein an der Rehlacke',
   street: 'Benatzkygasse 3, Tor 1, Parzelle 1',
@@ -148,12 +149,15 @@ const SETTING_DEFAULTS = {
   phone: '0699 116 70 583',
   email: 'michael.stocker@aon.at',
   zvr: '968 877 975',
-  office_hours: 'Sprechstunde jeden ersten Samstag im Monat, 10:00 – 12:00 Uhr, im Vereinshaus',
+  office_hours:
+    'Sprechstunden sind jederzeit nach persönlicher oder telefonischer '
+    + 'Voranmeldung möglich – Telefon 0699 116 70 583.',
   map_query: 'Benatzkygasse 3, 1220 Wien',
   footer_note: 'Mitglied im Zentralverband der Kleingärtner und Siedler Österreichs.',
   flohmarkt_intro:
-    'Pflanzen, Werkzeug, Gartenmöbel – hier können Mitglieder Dinge anbieten oder suchen. '
-    + 'Neue Anzeigen werden vor der Veröffentlichung von der Vereinsleitung geprüft.',
+    'Hier können Sie alles anbieten, was Sie nicht mehr brauchen – oder suchen, '
+    + 'was Sie dringend brauchen. Anfragen zur Verfügbarkeit von Kleingärten sind '
+    + 'wegen der langen Warteliste leider aussichtslos.',
 };
 
 function getSettings() {

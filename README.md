@@ -204,11 +204,38 @@ tar czf rehlacke-$(date +%F).tar.gz data uploads
 
 ## Hinweis zu den Inhalten
 
-Struktur und Bereiche entsprechen der bisherigen Website (Verein, Ruhezeiten, Kosten,
-Gartenfachberatung, Lageplan, Downloads, Ich biete / Ich suche, Impressum). Adresse,
-ZVR-Zahl, Telefonnummer, E-Mail-Adresse und die Ruhezeiten-Regelung sind übernommen.
+Die Inhalte sind aus der bisherigen Website (Webnode) **übernommen**: Vereinsleitung mit
+allen Funktionen, Kostentabelle 2026, Ruhezeiten, Beschlüsse der Hauptversammlungen
+2011–2024, Gartenfachberatung, Biotonnen-Entleerungstermine, Links, Todesfälle sowie
+Adresse, ZVR-Zahl, Telefonnummer und E-Mail-Adresse.
 
-Die übrigen Texte – etwa die Beträge auf der Seite „Kosten“, die Namen der
-Vereinsleitung und die Beispieltermine – sind Platzhalter und im Redaktionsbereich zu
-ersetzen. Dokumente wie Statuten und Gartenordnung sind als Einträge angelegt; die
-zugehörigen PDF-Dateien müssen noch hochgeladen werden.
+### Was noch zu tun ist
+
+* **Dokumente hochladen.** Statuten und Gartenordnung, der Aushang „Frühling 2026" und
+  „Was gehört in die Biotonne?" sind derzeit als Link auf die Dateiablage des alten
+  Anbieters eingetragen. Bitte im Redaktionsbereich unter *Dokumente* als Datei
+  hochladen, damit sie erhalten bleiben, wenn die alte Seite abgeschaltet wird.
+* **Datum der Beiträge.** Die bisherige Seite führte bei „Achtung – Einbrecher" und dem
+  Artikel zum Nachbarschaftsrecht kein Veröffentlichungsdatum. Beide tragen daher das
+  Datum der Übernahme und sollten korrigiert werden.
+* **Fotos.** Die Bilder der bisherigen Fotogalerie liegen beim alten Anbieter und konnten
+  nicht übernommen werden. Neue Bilder können unter *Medien* hochgeladen und in Beiträgen
+  verwendet werden.
+* **Lageplan.** Die alte Seite zeigte nur eine Überschrift. Ein Parzellenplan kann als
+  Bild oder PDF hinterlegt werden.
+* **Termine.** Eingetragen sind die Termine 2026 (Spanferkelessen am 20. Juni, Feierabend
+  am 18. Juli und 15. August). Neue Termine kommen unter *Termine* dazu.
+* **Todesfälle.** Die Namen sind übernommen, die zugehörigen Partezettel lagen als
+  Dateien beim alten Anbieter und müssten neu hochgeladen werden.
+
+### Unterschiede zur bisherigen Seite
+
+| | bisher | jetzt |
+| --- | --- | --- |
+| Technik | Webnode (Baukasten) | eigene Anwendung, Inhalte in eigener Datenbank |
+| Mobil | eigene Adresse `m.rehlacke.at` | eine Adresse, Layout passt sich an |
+| Tracking | Google Analytics | keines, daher kein Cookie-Banner nötig |
+| Pflege | im Baukasten des Anbieters | eigener Redaktionsbereich unter `/admin` |
+| Termine | Text auf mehreren Seiten | Terminkalender mit Datum und Uhrzeit |
+| Anzeigen | Hinweis ohne Funktion | Formular mit Freigabe durch die Vereinsleitung |
+| Kontakt | nur Telefonnummer und E-Mail | zusätzlich Formular mit Eingang im Adminbereich |

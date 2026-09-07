@@ -680,6 +680,15 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 2.5rem 0; }
 .event--past { opacity: .58; }
 
 /* Vereinsleitung */
+
+/*
+ * Personenkarten: .card schiebt normalerweise das letzte Element nach unten.
+ * Bei Funktionen ohne Kontaktdaten würde der Name dadurch in der Karte
+ * absinken und die Zeile ungleichmäßig aussehen.
+ */
+.card--person { justify-content: flex-start; }
+.card--person > :last-child { margin-top: 0; }
+
 .person {
   display: flex;
   gap: 1.1rem;

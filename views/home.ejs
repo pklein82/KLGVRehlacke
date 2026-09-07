@@ -94,7 +94,6 @@
 </section>
 <% } %>
 
-<% if (events.length) { %>
 <section class="section section--tinted">
   <div class="wrap">
     <div class="section__head">
@@ -106,6 +105,14 @@
       <a class="link-more" href="/termine">Alle Termine <%- icon('arrow') %></a>
     </div>
 
+    <% if (!events.length) { %>
+      <div class="empty">
+        <p class="mb-0">
+          Derzeit sind keine weiteren Termine beschlossen.
+          <a href="/termine">Vergangene Termine ansehen</a>
+        </p>
+      </div>
+    <% } else { %>
     <div class="grid grid--2">
       <% events.forEach(function (event) { const d = h.dateParts(event.starts_at); %>
         <article class="card reveal">
@@ -123,9 +130,9 @@
         </article>
       <% }); %>
     </div>
+    <% } %>
   </div>
 </section>
-<% } %>
 
 <section class="section wrap">
   <div class="section__head">
