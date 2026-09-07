@@ -185,8 +185,10 @@ Automatisch veröffentlicht wird er von `.github/workflows/pages.yml` bei jedem 
 `master`. Der Basispfad kommt aus `actions/configure-pages`, der Export stimmt daher
 sowohl für die Projektseite als auch für eine eigene Domain.
 
-**Einmalig nötig:** in den Repository-Einstellungen unter *Pages* die Quelle auf
-*GitHub Actions* stellen. Vorher läuft der Arbeitsablauf ins Leere.
+Pages muss dafür nicht von Hand eingeschaltet werden: der Arbeitsablauf übergibt
+`enablement: true`, womit `actions/configure-pages` es beim ersten Lauf selbst aktiviert.
+Sollte das an fehlenden Rechten scheitern, hilft der manuelle Weg — in den
+Repository-Einstellungen unter *Pages* die Quelle auf *GitHub Actions* stellen.
 
 Drei Dinge, die dieser Abzug bewusst nicht kann:
 

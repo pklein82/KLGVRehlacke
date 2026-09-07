@@ -38,9 +38,14 @@ jobs:
       - name: Rauchtests
         run: npm test
 
+      # enablement schaltet Pages beim ersten Lauf selbst ein (der Token hat
+      # pages: write). Ohne das schlägt der Schritt fehl, solange Pages nicht
+      # von Hand unter Settings -> Pages aktiviert wurde.
       - name: Pages einrichten
         id: pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       # base_path kommt von configure-pages: "/KLGVRehlacke" bei einer
       # Projektseite, "/" bei eigener Domain. Damit stimmt der Export in
