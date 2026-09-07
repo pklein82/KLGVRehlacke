@@ -3,11 +3,11 @@
 
 <header class="site-header" id="site-header">
   <div class="wrap site-header__inner">
-    <a class="brand" href="/">
-      <span class="brand__mark"><%- icon('leaf') %></span>
+    <a class="brand" href="/" aria-label="<%= settings.brand_pre %> <%= settings.brand_name %> – zur Startseite">
+      <span class="brand__mark"><%- logo.roundel({ size: 38 }) %></span>
       <span class="brand__text">
-        <span class="brand__name"><%= settings.site_title %></span>
-        <span class="brand__sub"><%= settings.site_subtitle %></span>
+        <span class="brand__pre"><%= settings.brand_pre %></span>
+        <span class="brand__name"><%= settings.brand_name %></span>
       </span>
     </a>
 

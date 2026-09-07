@@ -1,4 +1,32 @@
 /* ==========================================================================
+   Wortmarke: Nunito Sans, selbst gehostet (SIL Open Font License).
+   Kein externer Schrift-Dienst – die Content-Security-Policy erlaubt nur
+   eigene Ressourcen. Lizenztext: /fonts/LICENSE-Nunito-Sans.txt
+   ========================================================================== */
+
+@font-face {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/nunito-sans-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/nunito-sans-700.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/fonts/nunito-sans-800.woff2") format("woff2");
+}
+
+/* ==========================================================================
    KGV An der Rehlacke – Designsystem
    Keine externen Abhängigkeiten: Systemschriften, eigene Tokens, Dark Mode.
    ========================================================================== */
@@ -66,7 +94,20 @@
 
   /* Schrift */
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-brand: "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+
+  /* Bildmarke – eigene Palette, damit die Illustration in beiden Designs trägt */
+  --lg-mound:       #e7eedc;
+  --lg-hill:        #cadcb7;
+  --lg-sun:         #e9bf51;
+  --lg-built:       #2c4f2f;
+  --lg-door:        #7fa87a;
+  --lg-canopy:      #4f8a4a;
+  --lg-canopy-dark: #3c6d3a;
+  --lg-shrub:       #93bb79;
+  --lg-water:       #b9d3dc;
+  --lg-water-line:  #dceaef;
 
   --ease: cubic-bezier(.4, 0, .2, 1);
   --ease-out: cubic-bezier(.16, 1, .3, 1);
@@ -93,6 +134,16 @@ html.theme-dark {
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, .4);
   --shadow:    0 2px 4px rgba(0, 0, 0, .3), 0 12px 28px -10px rgba(0, 0, 0, .6);
   --shadow-lg: 0 4px 8px rgba(0, 0, 0, .35), 0 28px 56px -18px rgba(0, 0, 0, .7);
+  --lg-mound:       #1e3128;
+  --lg-hill:        #2a4636;
+  --lg-sun:         #e9bf51;
+  --lg-built:       #d7ecdf;
+  --lg-door:        #4f8a60;
+  --lg-canopy:      #6fae7f;
+  --lg-canopy-dark: #4f8a60;
+  --lg-shrub:       #5d9a6d;
+  --lg-water:       #3c6470;
+  --lg-water-line:  #6f9aa6;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -116,6 +167,16 @@ html.theme-dark {
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, .4);
     --shadow:    0 2px 4px rgba(0, 0, 0, .3), 0 12px 28px -10px rgba(0, 0, 0, .6);
     --shadow-lg: 0 4px 8px rgba(0, 0, 0, .35), 0 28px 56px -18px rgba(0, 0, 0, .7);
+    --lg-mound:       #1e3128;
+    --lg-hill:        #2a4636;
+    --lg-sun:         #e9bf51;
+    --lg-built:       #d7ecdf;
+    --lg-door:        #4f8a60;
+    --lg-canopy:      #6fae7f;
+    --lg-canopy-dark: #4f8a60;
+    --lg-shrub:       #5d9a6d;
+    --lg-water:       #3c6470;
+    --lg-water-line:  #6f9aa6;
   }
 }
 
@@ -197,6 +258,39 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 2.5rem 0; }
 .section--tight { padding-block: clamp(2.25rem, 5vw, 3.5rem); }
 .section--tinted { background: var(--bg-subtle); }
 
+/* ---------- Markenband ---------- */
+
+/*
+ * Die farbige Szene braucht einen hellen Grund. Auf dem dunklen Titelbereich
+ * würde sie als Aufkleber wirken; dort steht die Linienfassung im Seitenkopf.
+ */
+.brandband { background: var(--bg-subtle); border-block: 1px solid var(--border); }
+.brandband__inner {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
+}
+@media (min-width: 760px) {
+  .brandband__inner { grid-template-columns: minmax(0, 17rem) minmax(0, 1fr); }
+}
+.brandband__art { max-width: 17rem; }
+.brandband__body { display: grid; gap: .7rem; justify-items: start; }
+.brandband__claim {
+  font-family: var(--font-brand);
+  font-size: clamp(1.35rem, 1.1rem + 1vw, 1.9rem);
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--brand);
+  margin: 0;
+  line-height: 1.15;
+}
+.brandband__text {
+  margin: 0;
+  max-width: 46ch;
+  color: var(--text-muted);
+}
+
 .section__head {
   display: flex;
   flex-wrap: wrap;
@@ -264,31 +358,108 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 2.5rem 0; }
   min-height: 4.75rem;
 }
 
+/* ---------- Wortmarke ---------- */
+
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: .7rem;
+  gap: .65rem;
   margin-right: auto;
   text-decoration: none;
   color: var(--text);
-  font-weight: 650;
 }
 .brand:hover { color: var(--text); }
+.brand:hover .brand__mark { color: var(--brand-hover); }
+
 .brand__mark {
   flex: none;
-  width: 2.6rem;
-  height: 2.6rem;
-  display: grid;
-  place-items: center;
-  border-radius: 12px;
-  background: linear-gradient(150deg, var(--green-700), var(--green-900));
-  color: #eafff4;
-  box-shadow: var(--shadow-sm);
+  display: block;
+  color: var(--brand);
+  transition: color .18s var(--ease);
 }
-.brand__mark svg { width: 1.5rem; height: 1.5rem; }
-.brand__text { display: grid; line-height: 1.2; }
-.brand__name { font-family: var(--font-serif); font-size: 1.12rem; letter-spacing: -.01em; }
-.brand__sub { font-size: .74rem; color: var(--text-muted); font-weight: 500; letter-spacing: .02em; }
+.brand__text { display: grid; gap: .04rem; line-height: 1.1; }
+
+/* Klein oben, groß darunter – wie in der Vorlage. */
+.brand__pre {
+  font-family: var(--font-brand);
+  font-size: .76rem;
+  font-weight: 400;
+  letter-spacing: .01em;
+  color: var(--text-muted);
+}
+.brand__name {
+  font-family: var(--font-brand);
+  font-size: 1.24rem;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: var(--text);
+}
+
+@media (max-width: 480px) {
+  .brand__name { font-size: 1.08rem; }
+  .brand__pre { font-size: .7rem; }
+}
+
+/* ---------- Bildmarke ---------- */
+
+.logo-roundel { display: block; }
+
+.logo-scene { display: block; width: 100%; height: auto; }
+.lg-mound       { fill: var(--lg-mound); }
+.lg-hill        { fill: var(--lg-hill); }
+.lg-sun         { fill: var(--lg-sun); }
+.lg-built       { fill: var(--lg-built); }
+.lg-door        { fill: var(--lg-door); }
+.lg-canopy      { fill: var(--lg-canopy); }
+.lg-canopy-dark { fill: var(--lg-canopy-dark); }
+.lg-shrub       { fill: var(--lg-shrub); }
+.lg-water       { fill: var(--lg-water); }
+.lg-water-line  { fill: none; stroke: var(--lg-water-line); stroke-width: 2; stroke-linecap: round; }
+
+/* Gestapelte Marke: Szene über der Wortmarke, mit Claim. */
+.logo-stack {
+  display: grid;
+  justify-items: center;
+  gap: .9rem;
+  text-align: center;
+}
+.logo-stack .logo-scene { max-width: 15rem; }
+.logo-stack__pre {
+  font-family: var(--font-brand);
+  font-size: clamp(.95rem, .9rem + .2vw, 1.1rem);
+  font-weight: 400;
+  color: inherit;
+  opacity: .85;
+  margin: 0;
+}
+.logo-stack__name {
+  font-family: var(--font-brand);
+  font-size: clamp(1.6rem, 1.2rem + 1.8vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -.025em;
+  line-height: 1.05;
+  margin: -.35rem 0 0;
+}
+.logo-stack__claim {
+  display: grid;
+  justify-items: center;
+  gap: .7rem;
+  margin: .35rem 0 0;
+  font-family: var(--font-brand);
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  opacity: .75;
+}
+.logo-stack__claim::before {
+  content: "";
+  width: 3.5rem;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  opacity: .5;
+}
 
 .nav { display: flex; align-items: center; gap: .15rem; }
 .nav a {
@@ -1014,6 +1185,16 @@ input::placeholder, textarea::placeholder { color: var(--ink-300); }
   display: grid;
   gap: clamp(1.75rem, 4vw, 3rem);
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+}
+.footer__about { display: grid; justify-items: start; gap: .1rem; }
+.footer__mark { color: var(--green-300); margin-bottom: .6rem; }
+.footer__brand {
+  font-family: var(--font-brand);
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: #fff;
+  margin: 0 0 .5rem;
 }
 .footer__about p { max-width: 34ch; font-size: .94rem; }
 .footer__list { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; font-size: .94rem; }

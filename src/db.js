@@ -135,6 +135,9 @@ db.exec(`
 const SETTING_DEFAULTS = {
   site_title: 'KGV An der Rehlacke',
   site_subtitle: 'Kleingartenverein in 1220 Wien',
+  brand_pre: 'Kleingartenverein',
+  brand_name: '\u201eAn der Rehlacke\u201c',
+  brand_claim: 'Natur verbindet',
   hero_kicker: 'Kleingartenverein in der Donaustadt',
   hero_title: 'Herzlich willkommen beim KGV An der Rehlacke',
   hero_text:

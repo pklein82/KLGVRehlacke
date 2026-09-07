@@ -143,6 +143,26 @@ const SETTING_GROUPS = [
     fields: [
       { key: 'site_title', label: 'Name der Website', type: 'text' },
       { key: 'site_subtitle', label: 'Untertitel', type: 'text' },
+      {
+        key: 'brand_pre',
+        label: 'Wortmarke, kleine Zeile',
+        type: 'text',
+        width: 'half',
+        hint: 'Steht klein über dem Namen.',
+      },
+      {
+        key: 'brand_name',
+        label: 'Wortmarke, große Zeile',
+        type: 'text',
+        width: 'half',
+        hint: 'Anführungszeichen sind Teil der Marke.',
+      },
+      {
+        key: 'brand_claim',
+        label: 'Claim',
+        type: 'text',
+        hint: 'Kurzer Zusatz unter der Marke auf der Startseite. Leer lassen, um ihn weg\u00adzulassen.',
+      },
       { key: 'footer_note', label: 'Hinweis im Fußbereich', type: 'textarea' },
     ],
   },

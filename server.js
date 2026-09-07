@@ -10,6 +10,7 @@ const SqliteStore = require('./src/session-store');
 const { seed } = require('./src/seed');
 const helpers = require('./src/helpers');
 const { icon } = require('./src/icons');
+const logo = require('./src/logo');
 const buildNavigation = require('./src/navigation');
 const { ensureToken, verify } = require('./src/csrf');
 
@@ -76,6 +77,7 @@ app.use((req, res, next) => {
   res.locals.nav = buildNavigation();
   res.locals.h = helpers;
   res.locals.icon = icon;
+  res.locals.logo = logo;
   res.locals.currentPath = req.path;
   res.locals.currentUser = req.session.user || null;
   res.locals.year = new Date().getFullYear();

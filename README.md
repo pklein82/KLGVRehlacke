@@ -209,6 +209,35 @@ allen Funktionen, Kostentabelle 2026, Ruhezeiten, Beschlüsse der Hauptversammlu
 2011–2024, Gartenfachberatung, Biotonnen-Entleerungstermine, Links, Todesfälle sowie
 Adresse, ZVR-Zahl, Telefonnummer und E-Mail-Adresse.
 
+### Marke
+
+Die Bildmarke liegt als Inline-SVG in `src/logo.js` und kommt in drei Ausbaustufen,
+weil Haus, Baum, Zaun und Teich bei kleinen Größen ineinanderlaufen:
+
+| Fassung | Einsatz |
+| --- | --- |
+| `scene()` | vollständige Szene in Farbe – Markenband der Startseite |
+| `roundel()` | Linienfassung im Kreis, einfarbig – Seitenkopf, Fußbereich, Stempel |
+| `favicon()` | weiter reduziert – `public/img/favicon.svg` |
+
+Die Farben der Szene stehen als Tokens (`--lg-*`) in `site.css` und sind für hell und
+dunkel getrennt gesetzt: Haus, Zaun und Stämme werden auf dunklem Grund hell, die Sonne
+bleibt warm. Das ist keine Umkehrung, sondern eine eigene dunkle Fassung.
+
+Die farbige Szene braucht einen hellen Grund. Sie steht deshalb im Markenband unter dem
+Titelbereich, nicht im Titelbereich selbst – dort trägt die Linienfassung im Seitenkopf.
+
+Wortmarke, Claim und die kleine Zeile darüber sind Einstellungen
+(*Einstellungen → Website*) und damit ohne Codeänderung austauschbar.
+
+**Schrift:** Die Wortmarke ist in *Nunito Sans* gesetzt (SIL Open Font License), selbst
+gehostet unter `public/fonts/` in drei Schnitten (400/700/800, zusammen 42 KB). Kein
+externer Schriftdienst – die Content-Security-Policy erlaubt nur eigene Ressourcen. Der
+Lizenztext liegt unter `/fonts/LICENSE-Nunito-Sans.txt`.
+
+Die Überschriften der Seite stehen weiterhin in der Serifenschrift. Wenn die ganze Seite
+der Marke folgen soll, wäre der nächste Schritt, auch sie auf Nunito Sans umzustellen.
+
 ### Mitgelieferte Dateien
 
 Die Dokumente und Bilder der bisherigen Website liegen im Repository unter

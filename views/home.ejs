@@ -65,6 +65,25 @@
   </div>
 </section>
 
+<section class="section section--tight brandband">
+  <div class="wrap brandband__inner">
+    <div class="brandband__art">
+      <%- logo.scene({ title: settings.brand_pre + ' ' + settings.brand_name }) %>
+    </div>
+    <div class="brandband__body">
+      <% if (settings.brand_claim) { %>
+        <p class="brandband__claim"><%= settings.brand_claim %></p>
+      <% } %>
+      <p class="brandband__text">
+        Rund 160 Parzellen in der Wiener Donaustadt, und das seit 1958. Der Name erinnert
+        an die Lacke, an der die Rehe tranken – auf einem Luftbild von 1936 liegt sie noch
+        mitten im Bild.
+      </p>
+      <a class="link-more" href="/geschichte">Geschichte in Bildern <%- icon('arrow') %></a>
+    </div>
+  </div>
+</section>
+
 <% if (news.length) { %>
 <section class="section wrap">
   <div class="section__head">
