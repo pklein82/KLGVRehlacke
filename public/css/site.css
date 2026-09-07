@@ -442,6 +442,19 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 2.5rem 0; }
   color: #cdf3e0;
   pointer-events: none;
 }
+
+/* Optionales Titelbild: liegt hinter dem Farbverlauf, damit die Schrift lesbar bleibt. */
+.hero__photo {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .3;
+  filter: saturate(.85);
+}
+.hero--photo .hero__leaves { opacity: .1; }
 .hero__inner {
   display: grid;
   gap: clamp(2rem, 5vw, 4rem);
@@ -795,6 +808,24 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 2.5rem 0; }
   /* Ohne die Breitenbegrenzung dehnt eine breite Tabelle die ganze Spalte. */
   max-width: 100%;
 }
+
+.prose img {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  margin-block: 1.8em .6em;
+  background: var(--bg-subtle);
+}
+
+/* Ein kursiver Absatz direkt nach einem Bild ist dessen Bildunterschrift. */
+.prose p > img + em,
+.prose p:has(> img) + p > em:only-child {
+  display: block;
+  font-size: .88rem;
+  color: var(--text-muted);
+  font-style: normal;
+}
+.prose p:has(> img) { margin-bottom: .4em; }
+.prose p:has(> img) + p > em:only-child { margin-bottom: 2.2em; }
 
 .prose code {
   background: var(--surface-2);

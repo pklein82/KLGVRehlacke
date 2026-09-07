@@ -1,7 +1,10 @@
 <%- include('partials/head') %>
 <%- include('partials/header') %>
 
-<section class="hero">
+<section class="hero<%= settings.hero_image ? ' hero--photo' : '' %>">
+  <% if (settings.hero_image) { %>
+    <img class="hero__photo" src="<%= settings.hero_image %>" alt="" aria-hidden="true">
+  <% } %>
   <svg class="hero__leaves" aria-hidden="true" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
     <g fill="none" stroke="currentColor" stroke-width="1.4">
       <circle cx="1040" cy="90" r="180"/>

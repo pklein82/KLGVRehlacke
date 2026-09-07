@@ -5,8 +5,30 @@
  * bestehende Datensätze werden nie überschrieben.
  */
 
+const fs = require('node:fs');
+const path = require('node:path');
 const bcrypt = require('bcryptjs');
 const { db, setSettings, SETTING_DEFAULTS } = require('./db');
+
+const ASSET_SOURCE = path.join(__dirname, '..', 'seed-assets');
+const UPLOAD_DIR = process.env.UPLOAD_DIR || path.join(__dirname, '..', 'uploads');
+
+/*
+ * Dateien, die aus der bisherigen Website übernommen wurden. Sie liegen im
+ * Repository unter seed-assets/ und werden beim ersten Start in den
+ * Upload-Ordner kopiert, damit sie unabhängig vom alten Anbieter erhalten
+ * bleiben.
+ */
+const ASSETS = [
+  { file: 'statuten-und-gartenordnung.pdf', mime: 'application/pdf', original: 'Statuten u. Gartenordnung 2009-24.pdf' },
+  { file: 'aushang-fruehling-2026.pdf', mime: 'application/pdf', original: '2026-Frühling_Aushang_22.Bez.pdf' },
+  { file: 'was-gehoert-in-die-biotonne.pdf', mime: 'application/pdf', original: 'Bio-Tonnen.pdf' },
+  { file: 'anlage-1.jpg', mime: 'image/jpeg', original: 'Anlage1.jpg' },
+  { file: 'anlage-2.jpg', mime: 'image/jpeg', original: 'Anlage2.jpg' },
+  { file: 'anlage-3.jpg', mime: 'image/jpeg', original: 'Anlage3.jpg' },
+  { file: 'anlage-4.jpg', mime: 'image/jpeg', original: 'Anlage4.jpg' },
+  { file: 'anlage-5.jpg', mime: 'image/jpeg', original: 'Anlage5.jpg' },
+];
 
 const PAGES = [
   {
@@ -147,6 +169,39 @@ Die Entleerungstermine finden Sie unter [Müllentleerung](/muellentleerung).
 ## Aushänge und Unterlagen
 
 Die Aushänge der Fachberatung sowie das Informationsblatt „Was gehört in die Biotonne?" liegen im [Downloadbereich](/downloads).`,
+  },
+  {
+    slug: 'geschichte',
+    title: 'Geschichte in Bildern',
+    nav_title: 'Geschichte',
+    section: 'service',
+    position: 10,
+    intro: 'Historische Luftbilder aus dem Vereinsarchiv – die beschrifteten Aufnahmen reichen von 1929 bis 1967.',
+    body: `Der Verein besteht seit 1958. Die folgenden Luftbilder aus dem Vereinsarchiv zeigen die Anlage und ihre Umgebung in der Donaustadt über mehrere Jahrzehnte – von Feldern und Fabriken bis zu den heutigen Wohnbauten. Die Angaben in den Bildunterschriften sind, soweit vorhanden, von den handschriftlichen Beschriftungen der Abzüge übernommen.
+
+![Zwei Luftbilder der Erzherzog-Karl-Straße von 1929 und 1936](/uploads/anlage-5.jpg)
+
+*Zwei Aufnahmen auf einem Blatt. Oben: „Erzh. Karl Strasse, Juli 1929" – Felder, Alleen und einzelne Gebäude. Unten: „Magdeburgstr. – Erzh. Karl Str., 7. 11. 1936" – im Bild der Teich und die ersten Bauten.*
+
+![Luftbild Industriestraße und Erzherzog-Karl-Straße vom 15. September 1931](/uploads/anlage-4.jpg)
+
+*„Industriestr. – Erzherzog Karlstr., 15. 9. 1931" (Bildnummer 767).*
+
+![Luftbild eines Fabrikgeländes mit angrenzenden Kleingartenparzellen](/uploads/anlage-1.jpg)
+
+*Fabrikgelände mit den angrenzenden Kleingartenparzellen – rechts unten sind die Wege und Beete gut zu erkennen. Ohne Beschriftung.*
+
+![Luftbild über Siedlungen, Felder und Verkehrswege](/uploads/anlage-3.jpg)
+
+*Übersicht über Siedlungen, Felder und Verkehrswege. Ohne Beschriftung.*
+
+![Luftbild der Donaustadt mit neuen Wohnbauten, auf dem Träger mit 1967 bezeichnet](/uploads/anlage-2.jpg)
+
+*Blick über die entstehenden Wohnbauten. Auf dem Träger handschriftlich mit **1967** bezeichnet.*
+
+## Hinweise zu den Bildern
+
+Die Aufnahmen stammen aus dem Vereinsarchiv und wurden von gerahmten Abzügen abfotografiert; daher sind teils Rahmen, Träger und Beschriftungen mit im Bild. Wenn Sie zu einem Bild Jahr, Ort oder Namen ergänzen oder eine Angabe berichtigen können, freut sich die Vereinsleitung über eine [Nachricht](/kontakt).`,
   },
   {
     slug: 'muellentleerung',
@@ -334,30 +389,25 @@ const BOARD = [
   { name: 'Karl Mahr', role: 'Kontrolle', position: 90 },
 ];
 
-/*
- * Die Dateien liegen noch beim alten Anbieter. Sie sind hier als Link
- * eingetragen und sollten im Redaktionsbereich unter "Dokumente" hochgeladen
- * werden, damit sie unabhängig von der alten Seite erreichbar bleiben.
- */
 const DOCUMENTS = [
   {
     title: 'Statuten und Gartenordnung',
-    description: 'Rechtliche Grundlage des Vereins und Regeln für die Nutzung der Parzellen (Ausgabe 2009/24).',
-    link: 'https://09c105d63b.clvaw-cdnwnd.com/86210fc4c53096f896bd009ea9d1661f/200000397-9140291404/Statuten-u.Gartenordnung-2009-24.pdf',
+    description: 'Rechtliche Grundlage des Vereins und Regeln für die Nutzung der Parzellen (Ausgabe 2009/24, 8 Seiten).',
+    file: '/uploads/statuten-und-gartenordnung.pdf',
     category: 'Statuten & Ordnung',
     position: 10,
   },
   {
     title: 'Aushang Frühling 2026',
     description: 'Aushang der Gartenfachberatung für den 22. Bezirk.',
-    link: 'https://09c105d63b.clvaw-cdnwnd.com/86210fc4c53096f896bd009ea9d1661f/200000476-20f1320f15/2026-Fru%CC%88hling_Aushang_22.Bez.pdf',
+    file: '/uploads/aushang-fruehling-2026.pdf',
     category: 'Gartenfachberatung',
     position: 20,
   },
   {
     title: 'Was gehört in die Biotonne?',
     description: 'Informationsblatt zur richtigen Trennung von Bioabfall.',
-    link: 'https://09c105d63b.clvaw-cdnwnd.com/86210fc4c53096f896bd009ea9d1661f/200000342-21bd721bd9/Bio-Tonnen.pdf',
+    file: '/uploads/was-gehoert-in-die-biotonne.pdf',
     category: 'Gartenfachberatung',
     position: 30,
   },
@@ -382,12 +432,44 @@ const LISTINGS = [];
 function seed() {
   setDefaultSettings();
   seedAdmin();
+  installAssets();
   insertMissing('pages', PAGES, 'slug');
   insertMissing('news', NEWS, 'slug');
   insertMissing('events', EVENTS, ['title', 'starts_at']);
   insertMissing('board', BOARD, null);
   insertMissing('documents', DOCUMENTS, 'title');
   insertMissing('listings', LISTINGS, 'title');
+}
+
+/**
+ * Kopiert die übernommenen Dateien in den Upload-Ordner und verzeichnet sie in
+ * der Mediathek. Vorhandene Dateien werden nicht überschrieben.
+ */
+function installAssets() {
+  if (!fs.existsSync(ASSET_SOURCE)) return;
+  fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+
+  const known = db.prepare('SELECT 1 FROM media WHERE file = ?');
+  const record = db.prepare(
+    'INSERT INTO media (file, original, mime, size) VALUES (?, ?, ?, ?)',
+  );
+
+  let copied = 0;
+  for (const asset of ASSETS) {
+    const source = path.join(ASSET_SOURCE, asset.file);
+    if (!fs.existsSync(source)) continue;
+
+    const target = path.join(UPLOAD_DIR, asset.file);
+    if (!fs.existsSync(target)) {
+      fs.copyFileSync(source, target);
+      copied += 1;
+    }
+    if (!known.get(`/uploads/${asset.file}`)) {
+      record.run(`/uploads/${asset.file}`, asset.original, asset.mime, fs.statSync(target).size);
+    }
+  }
+
+  if (copied) console.log(`[seed] ${copied} übernommene Datei(en) in den Upload-Ordner kopiert.`);
 }
 
 function setDefaultSettings() {

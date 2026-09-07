@@ -209,13 +209,30 @@ allen Funktionen, Kostentabelle 2026, Ruhezeiten, Beschlüsse der Hauptversammlu
 2011–2024, Gartenfachberatung, Biotonnen-Entleerungstermine, Links, Todesfälle sowie
 Adresse, ZVR-Zahl, Telefonnummer und E-Mail-Adresse.
 
+### Mitgelieferte Dateien
+
+Die Dokumente und Bilder der bisherigen Website liegen im Repository unter
+`seed-assets/` und werden beim ersten Start in den Upload-Ordner kopiert und in der
+Mediathek verzeichnet. Damit bleiben sie erhalten, wenn die alte Seite abgeschaltet wird:
+
+| Datei | Inhalt |
+| --- | --- |
+| `statuten-und-gartenordnung.pdf` | Statuten und Gartenordnung, Ausgabe 2009/24 (8 Seiten) |
+| `aushang-fruehling-2026.pdf` | Aushang der Gartenfachberatung, Frühling 2026 |
+| `was-gehoert-in-die-biotonne.pdf` | Informationsblatt zum Bioabfall |
+| `anlage-1.jpg` … `anlage-5.jpg` | fünf historische Luftbilder, beschriftet 1929 bis 1967 |
+
+Die Luftbilder sind auf der Seite *Geschichte in Bildern* zusammengestellt. Die
+Bildunterschriften geben die handschriftlichen Beschriftungen der Abzüge wieder
+(„Erzh. Karl Strasse, Juli 1929", „Industriestr. – Erzherzog Karlstr., 15. 9. 1931",
+„Magdeburgstr. – Erzh. Karl Str., 7. 11. 1936" sowie ein mit 1967 bezeichnetes Blatt);
+zwei Aufnahmen sind unbeschriftet.
+
 ### Was noch zu tun ist
 
-* **Dokumente hochladen.** Statuten und Gartenordnung, der Aushang „Frühling 2026" und
-  „Was gehört in die Biotonne?" sind derzeit als Link auf die Dateiablage des alten
-  Anbieters eingetragen (`09c105d63b.clvaw-cdnwnd.com`). Bitte im Redaktionsbereich unter
-  *Dokumente* als Datei hochladen, damit sie erhalten bleiben, wenn die alte Seite
-  abgeschaltet wird.
+* **Todesfälle.** Die Namen sind übernommen. Die zugehörigen Partezettel liegen als
+  einzelne Dateien beim alten Anbieter und wurden nicht mitübernommen – auf Wunsch können
+  sie nachgeholt und unter *Medien* hinterlegt werden.
 * **Datum der Beiträge.** Die bisherige Seite führte bei „Achtung – Einbrecher" und dem
   Artikel zum Nachbarschaftsrecht kein Veröffentlichungsdatum – beide standen dort als
   Seiteninhalt, nicht als datierter Beitrag (der einzige datierte Eintrag in den
@@ -223,15 +240,13 @@ Adresse, ZVR-Zahl, Telefonnummer und E-Mail-Adresse.
   deshalb **optional**: Beiträge ohne Datum erscheinen ohne Datumsangabe und werden nach
   ihrer letzten Bearbeitung einsortiert. Beide übernommenen Beiträge sind ohne Datum
   gespeichert; ein Datum kann jederzeit nachgetragen werden.
-* **Fotos.** Die Bilder der bisherigen Fotogalerie liegen ebenfalls auf der Dateiablage
-  des alten Anbieters und konnten nicht übernommen werden. Neue Bilder können unter
-  *Medien* hochgeladen und in Beiträgen verwendet werden.
+* **Aktuelle Fotos.** Die übernommenen Bilder sind historische Luftbilder. Aktuelle
+  Aufnahmen der Anlage fehlen – sie können unter *Medien* hochgeladen und als Titelbild
+  der Startseite (*Einstellungen → Titelbild*) oder in Beiträgen verwendet werden.
 * **Lageplan.** Die alte Seite zeigte nur eine Überschrift. Ein Parzellenplan kann als
   Bild oder PDF hinterlegt werden.
 * **Termine.** Eingetragen sind die Termine 2026 (Spanferkelessen am 20. Juni, Feierabend
   am 18. Juli und 15. August). Neue Termine kommen unter *Termine* dazu.
-* **Todesfälle.** Die Namen sind übernommen, die zugehörigen Partezettel lagen als
-  Dateien beim alten Anbieter und müssten neu hochgeladen werden.
 
 ### Unterschiede zur bisherigen Seite
 

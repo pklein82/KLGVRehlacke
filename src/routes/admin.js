@@ -152,6 +152,13 @@ const SETTING_GROUPS = [
       { key: 'hero_kicker', label: 'Kleine Überschrift', type: 'text' },
       { key: 'hero_title', label: 'Große Überschrift', type: 'text' },
       { key: 'hero_text', label: 'Einleitungstext', type: 'textarea', rows: 5 },
+      {
+        key: 'hero_image',
+        label: 'Titelbild',
+        type: 'text',
+        hint: 'Optional. Pfad aus der Mediathek einfügen, z. B. /uploads/bild.jpg. '
+          + 'Das Bild liegt hinter dem Farbverlauf.',
+      },
     ],
   },
   {
