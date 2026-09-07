@@ -166,6 +166,53 @@ Node.js 20 oder neuer.
   jedem Neustart ungültig.
 * `NODE_ENV=production` setzen, damit Cookies nur über HTTPS gesendet werden.
 
+### In der Cloud betreiben
+
+**Die eine harte Anforderung: dauerhafter Speicher.** Datenbank und Uploads sind Dateien
+auf der Platte. Plattformen mit flüchtigem Dateisystem – Vercel, Netlify, Cloudflare
+Pages und Workers, Heroku ohne Volume – verlieren bei jedem Neustart alle Inhalte, die
+der Verein eingetragen hat. Sie kommen also nicht in Frage, so bequem ihr Deployment
+auch ist.
+
+Gebraucht wird ein Volume, eingehängt unter `/data`. Die Pfade sind über Umgebungs­variablen
+gesetzt, es ist also keine Codeänderung nötig:
+
+| Variable | Wert im Container | Zweck |
+| --- | --- | --- |
+| `DATA_DIR` | `/data/db` | SQLite-Datenbank |
+| `UPLOAD_DIR` | `/data/uploads` | hochgeladene Dateien |
+| `SESSION_SECRET` | zufälliger Wert | **muss gesetzt sein**, sonst gehen Anmeldungen bei jedem Neustart verloren |
+| `NODE_ENV` | `production` | Cookies nur über HTTPS |
+| `PORT` | `3000` | Standard des Abbilds |
+
+Das mitgelieferte `Dockerfile` läuft auf jeder dieser Plattformen:
+
+| Plattform | Deployment bei `git push` | Volume | Größenordnung |
+| --- | --- | --- | --- |
+| **Hetzner** (Falkenstein/Nürnberg) mit Coolify oder Dokploy | ja, nach Einrichtung | lokale Platte | ab ~4 €/Monat |
+| **Render** (Region Frankfurt) | ja, nativ über GitHub | Persistent Disk | ab ~7 $/Monat + Disk |
+| **Railway** | ja, nativ über GitHub | Volume | nutzungsabhängig |
+| **Fly.io** (Region `fra`) | über GitHub Action | Volume | ab ~3 $/Monat |
+| **Hetzner** mit systemd | über GitHub Action (SSH) | lokale Platte | ab ~4 €/Monat |
+
+Empfehlung für den Verein: **Hetzner mit Coolify.** Der Server steht in der EU, was bei
+Mitgliederdaten und Nachrichten aus dem Kontaktformular das wenigste Erklären verlangt,
+die Kosten liegen bei rund 4 € im Monat, und Coolify liefert das Deployment bei `git push`
+mitsamt Let’s-Encrypt-Zertifikat. Wer möglichst wenig selbst verwalten will, nimmt
+Render – dort genügt es, das Repository zu verbinden, ein Volume auf `/data` zu legen und
+die Variablen oben zu setzen.
+
+Zwei Dinge, die beim Umzug leicht übersehen werden:
+
+* **Die Domain** `rehlacke.at` zeigt derzeit auf Webnode. Nach dem Deployment muss der
+  DNS-Eintrag umgestellt werden – am besten erst dann, wenn die neue Seite erreichbar ist.
+* **Das Volume gehört ins Backup.** Ein Abbild lässt sich jederzeit neu bauen, `/data`
+  nicht.
+
+Das Abbild wurde in dieser Umgebung nicht gebaut (kein Docker-Daemon verfügbar). Geprüft
+sind die Vollständigkeit der kopierten Dateien, der Start mit `NODE_ENV=production` und
+ausgelagerten Datenpfaden sowie der Healthcheck-Befehl.
+
 ### Dauerbetrieb mit systemd
 
 ```ini

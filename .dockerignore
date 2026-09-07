@@ -1,0 +1,14 @@
+node_modules
+data
+uploads/*
+!uploads/.gitkeep
+.git
+.github
+.env
+.env.*
+!.env.example
+test
+*.log
+README.md
+Dockerfile
+.dockerignore
