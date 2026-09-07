@@ -282,8 +282,11 @@ gehostet unter `public/fonts/` in drei Schnitten (400/700/800, zusammen 42 KB). 
 externer Schriftdienst – die Content-Security-Policy erlaubt nur eigene Ressourcen. Der
 Lizenztext liegt unter `/fonts/LICENSE-Nunito-Sans.txt`.
 
-Die Überschriften der Seite stehen weiterhin in der Serifenschrift. Wenn die ganze Seite
-der Marke folgen soll, wäre der nächste Schritt, auch sie auf Nunito Sans umzustellen.
+Die Überschriften stehen ebenfalls in Nunito Sans (Schnitt 800), mit nach Schriftgrad
+gestufter Laufweite: je größer der Grad, desto enger – eine Sans braucht das, wo eine
+Serifenschrift ohne auskommt. Der Lauftext liegt weiterhin auf der Systemschrift; das hält
+die Seite schnell. Soll auch er auf Nunito Sans laufen, genügt eine Zeile in `site.css`
+(`body { font-family: var(--font-brand); }`), der Schnitt 400 ist bereits eingebunden.
 
 ### Mitgelieferte Dateien
 

@@ -95,7 +95,6 @@
   /* Schrift */
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-brand: "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
 
   /* Bildmarke – eigene Palette, damit die Illustration in beiden Designs trägt */
   --lg-mound:       #e7eedc;
@@ -211,18 +210,18 @@ body {
 }
 
 h1, h2, h3, h4 {
-  font-family: var(--font-serif);
-  font-weight: 600;
-  line-height: 1.12;
-  letter-spacing: -.015em;
+  font-family: var(--font-brand);
+  font-weight: 800;
+  line-height: 1.14;
   margin: 0 0 .6em;
   text-wrap: balance;
 }
 
-h1 { font-size: clamp(2.1rem, 1.35rem + 3.4vw, 3.7rem); }
-h2 { font-size: clamp(1.6rem, 1.2rem + 1.8vw, 2.45rem); }
-h3 { font-size: clamp(1.2rem, 1.06rem + .7vw, 1.5rem); }
-h4 { font-size: 1.075rem; font-family: var(--font-sans); font-weight: 650; letter-spacing: 0; }
+/* Je größer der Grad, desto enger die Laufweite – sonst fällt die Zeile auseinander. */
+h1 { font-size: clamp(2.05rem, 1.35rem + 3.2vw, 3.4rem); letter-spacing: -.032em; }
+h2 { font-size: clamp(1.55rem, 1.2rem + 1.7vw, 2.25rem); letter-spacing: -.026em; }
+h3 { font-size: clamp(1.18rem, 1.06rem + .65vw, 1.45rem); letter-spacing: -.018em; }
+h4 { font-size: 1.06rem; font-weight: 700; letter-spacing: -.008em; }
 
 p, ul, ol, table, blockquote, figure, pre { margin: 0 0 1.15em; }
 img, svg, video { max-width: 100%; height: auto; display: block; }
@@ -856,7 +855,14 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 2.5rem 0; }
   border: 1px solid var(--border);
   line-height: 1.1;
 }
-.event__day { display: block; font-family: var(--font-serif); font-size: 1.6rem; font-weight: 600; color: var(--brand); }
+.event__day {
+  display: block;
+  font-family: var(--font-brand);
+  font-size: 1.55rem;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  color: var(--brand);
+}
 .event__month { display: block; font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: var(--text-muted); margin-top: .2rem; }
 .event__body h3 { margin: 0 0 .3rem; font-size: 1.12rem; }
 .event__when { font-size: .875rem; color: var(--text-muted); margin: 0 0 .4rem; }
@@ -887,14 +893,21 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 2.5rem 0; }
   place-items: center;
   background: linear-gradient(150deg, var(--green-600), var(--green-800));
   color: #eafff4;
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-family: var(--font-brand);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -.02em;
   overflow: hidden;
 }
 .person__avatar img { width: 100%; height: 100%; object-fit: cover; }
 .person__role { font-size: .8rem; letter-spacing: .07em; text-transform: uppercase; color: var(--brand); font-weight: 650; }
-.person__name { font-family: var(--font-serif); font-size: 1.2rem; margin: .1rem 0 0; }
+.person__name {
+  font-family: var(--font-brand);
+  font-size: 1.18rem;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  margin: .1rem 0 0;
+}
 .person__contact { margin: .35rem 0 0; font-size: .9rem; display: grid; gap: .15rem; }
 .person__contact a { text-decoration: none; }
 

@@ -173,7 +173,13 @@ body.admin {
   background: var(--brand-soft); color: var(--brand);
 }
 .stat__icon svg { width: 1.2rem; height: 1.2rem; }
-.stat__value { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 600; line-height: 1; }
+.stat__value {
+  font-family: var(--font-brand);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1;
+}
 .stat__label { font-size: .82rem; color: var(--text-muted); margin-top: .2rem; }
 
 /* ---------- Tabellen ---------- */
