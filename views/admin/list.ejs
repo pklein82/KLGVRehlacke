@@ -51,7 +51,7 @@
                   <% } else if (col.type === 'flag') { %>
                     <%= value ? 'Ja' : '–' %>
                   <% } else if (col.type === 'date') { %>
-                    <%= h.formatDate(value) %>
+                    <%= h.formatDate(value) || '–' %>
                   <% } else if (col.type === 'datetime') { %>
                     <%= h.formatEventRange({ starts_at: value, ends_at: '', all_day: row.all_day }) %>
                   <% } else if (col.type === 'filelink') { %>

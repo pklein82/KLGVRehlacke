@@ -11,7 +11,8 @@ const RESERVED = require('../reserved-slugs');
 const q = {
   newsList: db.prepare(
     `SELECT * FROM news WHERE published = 1
-      ORDER BY pinned DESC, published_at DESC, id DESC LIMIT ? OFFSET ?`,
+      ORDER BY pinned DESC, COALESCE(NULLIF(published_at, ''), updated_at) DESC, id DESC
+      LIMIT ? OFFSET ?`,
   ),
   newsCount: db.prepare('SELECT COUNT(*) AS n FROM news WHERE published = 1'),
   newsBySlug: db.prepare('SELECT * FROM news WHERE slug = ? AND published = 1'),
@@ -77,7 +78,8 @@ router.get('/aktuelles/:slug', (req, res, next) => {
     html: renderMarkdown(item.body),
     more: db.prepare(
       `SELECT slug, title, published_at, excerpt FROM news
-        WHERE published = 1 AND id != ? ORDER BY published_at DESC LIMIT 3`,
+        WHERE published = 1 AND id != ?
+        ORDER BY COALESCE(NULLIF(published_at, ''), updated_at) DESC LIMIT 3`,
     ).all(item.id),
   });
 });

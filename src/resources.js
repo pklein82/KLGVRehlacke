@@ -15,7 +15,7 @@ const RESOURCES = {
     singular: 'Beitrag',
     icon: 'news',
     table: 'news',
-    order: 'pinned DESC, published_at DESC, id DESC',
+    order: "pinned DESC, COALESCE(NULLIF(published_at, ''), updated_at) DESC, id DESC",
     slugFrom: 'title',
     touch: 'updated_at',
     publicPath: (row) => `/aktuelles/${row.slug}`,
@@ -27,7 +27,13 @@ const RESOURCES = {
     ],
     fields: [
       { key: 'title', label: 'Titel', type: 'text', required: true, maxlength: 160 },
-      { key: 'published_at', label: 'Veröffentlicht am', type: 'date', required: true, width: 'half' },
+      {
+        key: 'published_at',
+        label: 'Veröffentlicht am',
+        type: 'date',
+        width: 'half',
+        hint: 'Optional. Ohne Datum erscheint der Beitrag ohne Datumsangabe.',
+      },
       { key: 'slug', label: 'URL-Kürzel', type: 'text', width: 'half', hint: 'Leer lassen: wird aus dem Titel erzeugt.' },
       { key: 'excerpt', label: 'Kurzfassung', type: 'textarea', maxlength: 400, hint: 'Erscheint in der Übersicht und in Suchmaschinen.' },
       { key: 'body', label: 'Text', type: 'markdown', rows: 18 },

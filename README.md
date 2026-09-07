@@ -213,14 +213,19 @@ Adresse, ZVR-Zahl, Telefonnummer und E-Mail-Adresse.
 
 * **Dokumente hochladen.** Statuten und Gartenordnung, der Aushang „Frühling 2026" und
   „Was gehört in die Biotonne?" sind derzeit als Link auf die Dateiablage des alten
-  Anbieters eingetragen. Bitte im Redaktionsbereich unter *Dokumente* als Datei
-  hochladen, damit sie erhalten bleiben, wenn die alte Seite abgeschaltet wird.
+  Anbieters eingetragen (`09c105d63b.clvaw-cdnwnd.com`). Bitte im Redaktionsbereich unter
+  *Dokumente* als Datei hochladen, damit sie erhalten bleiben, wenn die alte Seite
+  abgeschaltet wird.
 * **Datum der Beiträge.** Die bisherige Seite führte bei „Achtung – Einbrecher" und dem
-  Artikel zum Nachbarschaftsrecht kein Veröffentlichungsdatum. Beide tragen daher das
-  Datum der Übernahme und sollten korrigiert werden.
-* **Fotos.** Die Bilder der bisherigen Fotogalerie liegen beim alten Anbieter und konnten
-  nicht übernommen werden. Neue Bilder können unter *Medien* hochgeladen und in Beiträgen
-  verwendet werden.
+  Artikel zum Nachbarschaftsrecht kein Veröffentlichungsdatum – beide standen dort als
+  Seiteninhalt, nicht als datierter Beitrag (der einzige datierte Eintrag in den
+  RSS-Feeds ist ein Webnode-Platzhalter von 2014). Das Feld „Veröffentlicht am" ist
+  deshalb **optional**: Beiträge ohne Datum erscheinen ohne Datumsangabe und werden nach
+  ihrer letzten Bearbeitung einsortiert. Beide übernommenen Beiträge sind ohne Datum
+  gespeichert; ein Datum kann jederzeit nachgetragen werden.
+* **Fotos.** Die Bilder der bisherigen Fotogalerie liegen ebenfalls auf der Dateiablage
+  des alten Anbieters und konnten nicht übernommen werden. Neue Bilder können unter
+  *Medien* hochgeladen und in Beiträgen verwendet werden.
 * **Lageplan.** Die alte Seite zeigte nur eine Überschrift. Ein Parzellenplan kann als
   Bild oder PDF hinterlegt werden.
 * **Termine.** Eingetragen sind die Termine 2026 (Spanferkelessen am 20. Juni, Feierabend

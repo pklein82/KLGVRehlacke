@@ -277,7 +277,7 @@ const NEWS = [
 - Sperren Sie die Außentore ab.
 
 **Machen Sie Ihr Haus für Einbrecher so unattraktiv wie möglich!**`,
-    published_at: '2026-09-07',
+    published_at: '',
     pinned: 1,
   },
   {
@@ -287,7 +287,7 @@ const NEWS = [
     body: `Hier finden Sie einen interessanten Artikel zum Thema Nachbarschaftsrecht:
 
 [Grenzbepflanzung, Fallobst, Laub – Streit am Gartenzaun](https://ratgeber.immowelt.at/a/grenzbepflanzung-fallobst-laub-streit-am-gartenzaun.html)`,
-    published_at: '2026-09-07',
+    published_at: '',
   },
 ];
 

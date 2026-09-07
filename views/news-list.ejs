@@ -21,7 +21,9 @@
             <div class="news-card__image"><img src="<%= item.image %>" alt="" loading="lazy"></div>
           <% } %>
           <div class="card__meta">
-            <time datetime="<%= item.published_at %>"><%= h.formatDate(item.published_at) %></time>
+            <% if (item.published_at) { %>
+              <time datetime="<%= item.published_at %>"><%= h.formatDate(item.published_at) %></time>
+            <% } %>
             <% if (item.pinned) { %><span class="tag">Wichtig</span><% } %>
           </div>
           <h3><a class="card__link" href="/aktuelles/<%= item.slug %>"><%= item.title %></a></h3>
