@@ -166,6 +166,42 @@ Node.js 20 oder neuer.
   jedem Neustart ungültig.
 * `NODE_ENV=production` setzen, damit Cookies nur über HTTPS gesendet werden.
 
+### Statischer Abzug auf GitHub Pages
+
+Neben der laufenden Anwendung gibt es einen statischen Abzug der öffentlichen Seiten. Er
+eignet sich, um der Vereinsleitung die Seite zum Durchklicken zu geben, ohne dass jemand
+etwas installieren muss.
+
+```bash
+npm run export          # nach dist/, Basispfad /KLGVRehlacke/
+BASE_PATH=/ npm run export
+INDEXABLE=1 npm run export
+```
+
+Der Export erzeugt eine echte Datei je Adresse (`ruhezeiten/index.html` und so weiter),
+kopiert Stylesheets, Schriften, Bilder und Uploads dazu und schreibt eine `404.html`.
+
+Automatisch veröffentlicht wird er von `.github/workflows/pages.yml` bei jedem Push auf
+`master`. Der Basispfad kommt aus `actions/configure-pages`, der Export stimmt daher
+sowohl für die Projektseite als auch für eine eigene Domain.
+
+**Einmalig nötig:** in den Repository-Einstellungen unter *Pages* die Quelle auf
+*GitHub Actions* stellen. Vorher läuft der Arbeitsablauf ins Leere.
+
+Drei Dinge, die dieser Abzug bewusst nicht kann:
+
+* **Er zeigt die Startinhalte, nicht die gepflegten.** Die Inhalte liegen in einer
+  SQLite-Datei, die nicht im Repository ist. Auf dem Bauserver gibt es sie also nicht, und
+  der Abzug entsteht aus `src/seed.js`. Was die Vereinsleitung später im Redaktionsbereich
+  ändert, erscheint dort nicht.
+* **Formulare sind abgeschaltet.** Kontakt und Anzeigen brauchen den Server; im Abzug sind
+  die Felder deaktiviert und tragen einen Hinweis (`public/js/static.js`).
+* **Der Redaktionsbereich fehlt** und der Link darauf wird entfernt.
+
+Der Abzug ist außerdem auf `noindex` gestellt und liefert ein sperrendes `robots.txt`,
+damit er der echten Vereinsseite in Suchmaschinen keine Konkurrenz macht. Wer den Export
+selbst als Website betreibt, setzt `INDEXABLE=1`.
+
 ### In der Cloud betreiben
 
 **Die eine harte Anforderung: dauerhafter Speicher.** Datenbank und Uploads sind Dateien

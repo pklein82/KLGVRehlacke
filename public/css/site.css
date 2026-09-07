@@ -9,21 +9,21 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("/fonts/nunito-sans-400.woff2") format("woff2");
+  src: url("../fonts/nunito-sans-400.woff2") format("woff2");
 }
 @font-face {
   font-family: "Nunito Sans";
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("/fonts/nunito-sans-700.woff2") format("woff2");
+  src: url("../fonts/nunito-sans-700.woff2") format("woff2");
 }
 @font-face {
   font-family: "Nunito Sans";
   font-style: normal;
   font-weight: 800;
   font-display: swap;
-  src: url("/fonts/nunito-sans-800.woff2") format("woff2");
+  src: url("../fonts/nunito-sans-800.woff2") format("woff2");
 }
 
 /* ==========================================================================
@@ -1136,6 +1136,20 @@ input::placeholder, textarea::placeholder { color: var(--ink-300); }
 .notice--error { border-color: color-mix(in oklab, var(--clay-500) 45%, var(--border)); background: var(--accent-soft); color: var(--accent); }
 .notice--info { border-color: var(--border-strong); }
 .notice ul { margin: .4rem 0 0; padding-left: 1.2em; }
+
+/* Hinweis im statischen Export (siehe js/static.js) */
+.static-note {
+  display: block;
+  margin-bottom: 1rem;
+  padding: .85rem 1.1rem;
+  border-radius: var(--radius);
+  border: 1px dashed var(--border-strong);
+  background: var(--bg-subtle);
+  color: var(--text-muted);
+  font-size: .9rem;
+}
+.static-note strong { color: var(--text); font-weight: 650; }
+.is-inert { opacity: .72; }
 
 .empty {
   padding: 2.5rem 1.5rem;

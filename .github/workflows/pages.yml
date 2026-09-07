@@ -1,0 +1,67 @@
+name: Statische Seiten veröffentlichen
+
+# Baut bei jedem Push auf master einen statischen Abzug der öffentlichen Seiten
+# und legt ihn auf GitHub Pages. Der Abzug zeigt die Startinhalte aus
+# src/seed.js – in der Fertigungsstrecke gibt es keine gepflegte Datenbank.
+#
+# Einmalig nötig: Settings -> Pages -> Source auf "GitHub Actions" stellen.
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Zwei gleichzeitige Veröffentlichungen würden sich in die Quere kommen.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  bauen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Abhängigkeiten installieren
+        run: npm ci
+
+      - name: Rauchtests
+        run: npm test
+
+      - name: Pages einrichten
+        id: pages
+        uses: actions/configure-pages@v5
+
+      # base_path kommt von configure-pages: "/KLGVRehlacke" bei einer
+      # Projektseite, "/" bei eigener Domain. Damit stimmt der Export in
+      # beiden Fällen ohne Handarbeit.
+      - name: Statischen Abzug bauen
+        run: npm run export
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+
+      - name: Ergebnis hochladen
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  veroeffentlichen:
+    needs: bauen
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Auf GitHub Pages legen
+        id: deployment
+        uses: actions/deploy-pages@v4
