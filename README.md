@@ -185,10 +185,32 @@ Automatisch veröffentlicht wird er von `.github/workflows/pages.yml` bei jedem 
 `master`. Der Basispfad kommt aus `actions/configure-pages`, der Export stimmt daher
 sowohl für die Projektseite als auch für eine eigene Domain.
 
-Pages muss dafür nicht von Hand eingeschaltet werden: der Arbeitsablauf übergibt
-`enablement: true`, womit `actions/configure-pages` es beim ersten Lauf selbst aktiviert.
-Sollte das an fehlenden Rechten scheitern, hilft der manuelle Weg — in den
-Repository-Einstellungen unter *Pages* die Quelle auf *GitHub Actions* stellen.
+#### Voraussetzung: GitHub Pages muss verfügbar sein
+
+**Dieses Repository ist privat, und für private Repositories bietet GitHub Pages nur in
+den bezahlten Plänen (Pro, Team, Enterprise) an.** Auf dem kostenlosen Plan lässt sich
+Pages daher nicht einschalten – der Arbeitsablauf scheitert dann im Schritt
+*Pages einrichten* mit `Resource not accessible by integration`, weil GitHub dem
+Workflow-Token das Anlegen der Pages-Site verweigert.
+
+Es gibt drei Wege:
+
+1. **Repository öffentlich machen.** Pages ist dann im kostenlosen Plan enthalten, und
+   der Arbeitsablauf richtet alles selbst ein (`enablement: true`). Zu bedenken: damit
+   werden auch die Namen der Vereinsleitung, die Liste der Todesfälle und die Unterlagen
+   des Vereins über GitHub öffentlich – Inhalte, die auf der Vereinswebsite ohnehin
+   öffentlich stehen, aber eben zusätzlich an einer zweiten Stelle.
+2. **GitHub Pro** (etwa 4 $ im Monat) freischalten. Das Repository bleibt privat, die
+   veröffentlichte Seite ist trotzdem öffentlich erreichbar – Pages hinter Anmeldung gibt
+   es nur in Enterprise.
+3. **Auf Pages verzichten.** Der statische Abzug lässt sich mit `npm run export` jederzeit
+   lokal bauen und von jedem Webspace ausliefern. Für den Dauerbetrieb ist ohnehin die
+   laufende Anwendung gedacht (siehe unten), weil nur sie den Redaktionsbereich mitbringt.
+
+Ist Pages verfügbar, muss nichts von Hand eingerichtet werden: der Arbeitsablauf übergibt
+`enablement: true`, womit `actions/configure-pages` die Pages-Site beim ersten Lauf selbst
+anlegt. Alternativ von Hand unter *Settings → Pages* die Quelle auf *GitHub Actions*
+stellen.
 
 Drei Dinge, die dieser Abzug bewusst nicht kann:
 
