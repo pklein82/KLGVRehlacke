@@ -190,15 +190,17 @@ const SETTING_GROUPS = [
       { key: 'city', label: 'Ort', type: 'text', width: 'half' },
       {
         key: 'phone',
-        label: 'Telefon (nur Impressum und Kontaktseite)',
+        label: 'Telefon (Impressum und Kontaktseite)',
         type: 'text',
         width: 'half',
+        hint: 'Derzeit ein Platzhalter. Bitte durch die Nummer des Vereins ersetzen.',
       },
       {
         key: 'email',
-        label: 'E-Mail (nur Impressum und Kontaktseite)',
+        label: 'E-Mail (Impressum und Kontaktseite)',
         type: 'text',
         width: 'half',
+        hint: 'Derzeit ein Platzhalter. Bitte durch die Adresse des Vereins ersetzen.',
       },
       {
         key: 'public_phone',
@@ -206,7 +208,7 @@ const SETTING_GROUPS = [
         type: 'text',
         width: 'half',
         hint: 'Erscheint auf der Startseite und im Fußbereich. Leer lassen, '
-          + 'wenn dort keine Nummer stehen soll.',
+          + 'wenn dort keine Nummer stehen soll. Derzeit ein Platzhalter.',
       },
       {
         key: 'public_email',
@@ -214,7 +216,8 @@ const SETTING_GROUPS = [
         type: 'text',
         width: 'half',
         hint: 'Am besten eine Adresse des Vereins wie office@rehlacke.at, keine private. '
-          + 'Leer lassen: dann verweist die Seite auf das Kontaktformular.',
+          + 'Leer lassen: dann verweist die Seite auf das Kontaktformular. '
+          + 'Derzeit ein Platzhalter.',
       },
       { key: 'zvr', label: 'ZVR-Zahl', type: 'text', width: 'half' },
       { key: 'office_hours', label: 'Sprechstunde', type: 'textarea', rows: 2 },

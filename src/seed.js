@@ -58,7 +58,7 @@ Oberstes Organ des Vereins ist die Hauptversammlung. Sie wählt die Vereinsleitu
 
 ## Anliegen und Fragen
 
-Sprechstunden sind jederzeit nach persönlicher oder telefonischer Voranmeldung möglich. Rufen Sie dazu bitte **0699 116 70 583** an oder nutzen Sie das [Kontaktformular](/kontakt).`,
+Sprechstunden sind jederzeit nach persönlicher oder telefonischer Voranmeldung möglich. Rufen Sie dazu bitte **+43 000 000 0000** an oder nutzen Sie das [Kontaktformular](/kontakt).`,
   },
   {
     slug: 'ruhezeiten',
@@ -161,7 +161,7 @@ In den Monaten Juli und August dürfen weder Abbruch- und Aushubarbeiten noch vo
     intro: 'Hinweise der Fachberatung, Aushänge und die Biotonnen des Vereins.',
     body: `## Biotonnen ausleihen
 
-Sie können gerne **Biotonnen beim Vereinshaus ausleihen**. Dazu bitte SMS oder Anruf an Michael Stocker (**0699 116 70 583**), damit die Verfügbarkeit koordiniert werden kann.
+Sie können gerne **Biotonnen beim Vereinshaus ausleihen**. Dazu bitte SMS oder Anruf an die Vereinsleitung (**+43 000 000 0000**), damit die Verfügbarkeit koordiniert werden kann.
 
 Die Entleerung der Biotonnen findet **bei Tor 1** statt – bitte unbedingt dort zur Entleerung bringen (auch wenn dies manchmal mühsam ist), sonst vagabundieren die Biotonnen in unserer Anlage und sind bei Bedarf nicht verfügbar.
 
@@ -375,8 +375,8 @@ const BOARD = [
   {
     name: 'Michael Stocker',
     role: 'Obmann',
-    email: 'michael.stocker@aon.at',
-    phone: '0699 116 70 583',
+    email: 'office@example.org',
+    phone: '+43 000 000 0000',
     position: 10,
     note: 'Sprechstunde nach persönlicher oder telefonischer Voranmeldung.',
   },

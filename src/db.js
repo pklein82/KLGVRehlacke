@@ -149,18 +149,22 @@ const SETTING_DEFAULTS = {
   street: 'Benatzkygasse 3, Tor 1, Parzelle 1',
   zip: '1220',
   city: 'Wien',
-  // Die echten Daten der Vereinsleitung. Erscheinen nur im Impressum
-  // (Pflichtangabe) und auf der Kontaktseite, wo sie gezielt gesucht werden.
-  phone: '0699 116 70 583',
-  email: 'michael.stocker@aon.at',
-
   /*
-   * Unpersönliche Vereinsadresse für die gut sichtbaren Stellen – Startseite,
-   * Fußbereich, Seitenspalten. Solange sie leer ist, steht dort ein Verweis auf
-   * das Kontaktformular statt einer privaten Nummer oder Adresse.
+   * Platzhalter. Die bisherige Website nannte hier eine private Mobilnummer und
+   * eine private Freemail-Adresse; beide gehören einer Person, nicht dem Verein.
+   * example.org ist nach RFC 2606 reserviert und erreicht niemanden, die
+   * Nullnummer ist nicht wählbar – ein Versehen kann also nicht passieren.
+   *
+   * Vor dem Livegang durch die Daten des Vereins ersetzen
+   * (Einstellungen -> Verein und Kontakt).
    */
-  public_email: '',
-  public_phone: '',
+  phone: '+43 000 000 0000',
+  email: 'office@example.org',
+
+  // Was an den gut sichtbaren Stellen steht: Startseite, Fußbereich,
+  // Seitenspalten. Leer lassen, um dort auf das Kontaktformular zu verweisen.
+  public_email: 'office@example.org',
+  public_phone: '+43 000 000 0000',
   zvr: '968 877 975',
   office_hours:
     'Sprechstunden sind jederzeit nach persönlicher oder telefonischer '

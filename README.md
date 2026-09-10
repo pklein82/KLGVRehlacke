@@ -376,26 +376,38 @@ Bildunterschriften geben die handschriftlichen Beschriftungen der Abzüge wieder
 „Magdeburgstr. – Erzh. Karl Str., 7. 11. 1936" sowie ein mit 1967 bezeichnetes Blatt);
 zwei Aufnahmen sind unbeschriftet.
 
-### Personenbezogene Kontaktdaten
+### Kontaktdaten sind Platzhalter
 
-Telefonnummer und E-Mail-Adresse der bisherigen Website gehören einer Person, nicht dem
-Verein (private Mobilnummer, private Adresse bei einem Freemail-Anbieter). Die Seite zeigt
-sie daher nur dort, wo sie hingehören:
+Die bisherige Website nannte als Vereinskontakt eine **private Mobilnummer und eine
+private Freemail-Adresse**. Beide gehören einer Person, nicht dem Verein, und standen auf
+der Startseite und in jedem Seitenfuß. Seit das Repository öffentlich ist, wären sie
+zusätzlich dort nachlesbar.
 
-| Ort | Was steht dort |
+Sie sind daher durchgehend durch Platzhalter ersetzt:
+
+```
+Telefon:  +43 000 000 0000     (nicht wählbar)
+E-Mail:   office@example.org   (example.org ist nach RFC 2606 reserviert)
+```
+
+Beide sind so gewählt, dass ein Versehen nicht passieren kann – niemand wird versehentlich
+angerufen oder angeschrieben. Betroffen sind Startseite, Fußbereich, Kontaktseite,
+Impressum, Vereinsleitung und die Hinweise zur Biotonnen-Ausleihe.
+
+**Vor dem Livegang zu ersetzen** unter *Einstellungen → Verein und Kontakt*:
+
+| Feld | Wo es erscheint |
 | --- | --- |
-| **Impressum** | die echten Daten – Pflichtangabe nach § 5 ECG |
-| **Kontakt** | die echten Daten – wer diese Seite öffnet, sucht sie gezielt |
-| **Vereinsleitung** | die echten Daten beim Obmann, wie auf der bisherigen Website |
-| Startseite, Fußbereich, Seitenspalten | nichts Persönliches, nur ein Verweis auf das Kontaktformular |
+| Telefon, E-Mail | Impressum und Kontaktseite |
+| Vereinstelefon / Vereins-E-Mail, öffentlich | Startseite, Fußbereich, Seitenspalten |
 
-Sobald der Verein eine eigene Adresse hat (etwa `office@rehlacke.at`) und eventuell ein
-Vereinstelefon, gehören sie unter *Einstellungen → Verein und Kontakt* in die Felder
-**Vereins-E-Mail, öffentlich** und **Vereinstelefon, öffentlich**. Dann erscheinen sie an
-den sichtbaren Stellen und der Verweis auf das Formular entfällt – ohne Codeänderung.
+Die Trennung ist Absicht: In das erste Paar gehören die Daten, die das Impressum als
+Pflichtangabe braucht; in das zweite eine unpersönliche Vereinsadresse wie
+`office@rehlacke.at`. Bleibt das zweite Paar leer, verweisen Startseite und Fußbereich auf
+das Kontaktformular, statt eine Nummer zu zeigen.
 
-Solange diese Felder leer sind, steht auf der Startseite und im Fußbereich keine private
-Nummer und keine private Adresse.
+Nur der **Name** des Obmanns steht weiterhin auf der Seite – wie auf der bisherigen
+Website, denn die Vertretungsbefugten gehören ins Impressum.
 
 ### Was noch zu tun ist
 
