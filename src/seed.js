@@ -7,6 +7,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const crypto = require('node:crypto');
 const bcrypt = require('bcryptjs');
 const { db, setSettings, SETTING_DEFAULTS } = require('./db');
 
@@ -485,13 +486,26 @@ function seedAdmin() {
   if (count > 0) return;
 
   const email = process.env.ADMIN_EMAIL || 'admin@rehlacke.at';
-  const password = process.env.ADMIN_PASSWORD || 'rehlacke';
+
+  /*
+   * Kein festes Standardkennwort: ein im Quellcode stehendes Kennwort wäre für
+   * jeden nachlesbar, der das Repository sieht. Ohne ADMIN_PASSWORD wird daher
+   * ein zufälliges erzeugt und einmalig ausgegeben.
+   */
+  const generated = !process.env.ADMIN_PASSWORD;
+  const password = process.env.ADMIN_PASSWORD
+    || crypto.randomBytes(9).toString('base64url');
+
   db.prepare('INSERT INTO users (email, name, password, role) VALUES (?, ?, ?, ?)')
     .run(email, 'Vereinsleitung', bcrypt.hashSync(password, 10), 'admin');
 
   console.log(`[seed] Administrator angelegt: ${email}`);
-  if (!process.env.ADMIN_PASSWORD) {
-    console.log('[seed] Startkennwort "rehlacke" – bitte nach dem ersten Login ändern!');
+  if (generated) {
+    console.log('[seed] ---------------------------------------------------------');
+    console.log(`[seed] Startkennwort: ${password}`);
+    console.log('[seed] Es wird nur dieses eine Mal angezeigt. Notieren und nach');
+    console.log('[seed] dem ersten Login unter "Konto" ändern.');
+    console.log('[seed] ---------------------------------------------------------');
   }
 }
 

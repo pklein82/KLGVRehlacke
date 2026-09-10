@@ -32,17 +32,26 @@ Danach im Browser öffnen:
 * Website: <http://localhost:3000>
 * Redaktion: <http://localhost:3000/admin>
 
-Beim ersten Start werden die Datenbank, Beispielinhalte und ein Administratorkonto
-angelegt. Ohne eigene Angaben lauten die Zugangsdaten:
+Beim ersten Start werden die Datenbank, die Startinhalte und ein Administratorkonto
+angelegt. Das Kennwort wird dabei **zufällig erzeugt und einmalig im Protokoll
+ausgegeben**:
 
 ```
-E-Mail:   admin@rehlacke.at
-Kennwort: rehlacke
+[seed] Administrator angelegt: admin@rehlacke.at
+[seed] ---------------------------------------------------------
+[seed] Startkennwort: 4e4iIrdKt7lO
+[seed] Es wird nur dieses eine Mal angezeigt. Notieren und nach
+[seed] dem ersten Login unter "Konto" ändern.
+[seed] ---------------------------------------------------------
 ```
 
-> **Bitte das Kennwort direkt nach der ersten Anmeldung unter „Konto“ ändern.**
-> Besser noch: vor dem ersten Start `ADMIN_EMAIL` und `ADMIN_PASSWORD` setzen
-> (siehe `.env.example`).
+Ein festes Kennwort im Quellcode gibt es bewusst nicht – es wäre für jeden nachlesbar,
+der das Repository sieht. Wer das Kennwort selbst bestimmen will, setzt vor dem ersten
+Start `ADMIN_EMAIL` und `ADMIN_PASSWORD` (siehe `.env.example`); dann wird nichts
+ausgegeben.
+
+Ist das Kennwort verloren, hilft: `data/` löschen und neu starten – dann werden Konto und
+Startinhalte neu angelegt (gepflegte Inhalte gehen dabei verloren).
 
 ### Tests
 
