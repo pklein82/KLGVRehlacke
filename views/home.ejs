@@ -43,21 +43,30 @@
         </div>
       </div>
       <% } %>
-      <% if (settings.email) { %>
+      <% if (publicContact.email) { %>
       <div class="hero__fact">
         <%- icon('mail') %>
         <div>
           <dt>E-Mail</dt>
-          <dd><a href="mailto:<%= settings.email %>"><%= settings.email %></a></dd>
+          <dd><a href="mailto:<%= publicContact.email %>"><%= publicContact.email %></a></dd>
         </div>
       </div>
       <% } %>
-      <% if (settings.phone) { %>
+      <% if (publicContact.phone) { %>
       <div class="hero__fact">
         <%- icon('phone') %>
         <div>
           <dt>Telefon</dt>
-          <dd><a href="tel:<%= settings.phone.replace(/\s/g, '') %>"><%= settings.phone %></a></dd>
+          <dd><a href="tel:<%= publicContact.phone.replace(/\s/g, '') %>"><%= publicContact.phone %></a></dd>
+        </div>
+      </div>
+      <% } %>
+      <% if (!publicContact.hasAny) { %>
+      <div class="hero__fact">
+        <%- icon('mail') %>
+        <div>
+          <dt>Kontakt</dt>
+          <dd><a href="/kontakt">Nachricht an die Vereinsleitung</a></dd>
         </div>
       </div>
       <% } %>

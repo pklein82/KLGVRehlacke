@@ -376,6 +376,27 @@ Bildunterschriften geben die handschriftlichen Beschriftungen der Abzüge wieder
 „Magdeburgstr. – Erzh. Karl Str., 7. 11. 1936" sowie ein mit 1967 bezeichnetes Blatt);
 zwei Aufnahmen sind unbeschriftet.
 
+### Personenbezogene Kontaktdaten
+
+Telefonnummer und E-Mail-Adresse der bisherigen Website gehören einer Person, nicht dem
+Verein (private Mobilnummer, private Adresse bei einem Freemail-Anbieter). Die Seite zeigt
+sie daher nur dort, wo sie hingehören:
+
+| Ort | Was steht dort |
+| --- | --- |
+| **Impressum** | die echten Daten – Pflichtangabe nach § 5 ECG |
+| **Kontakt** | die echten Daten – wer diese Seite öffnet, sucht sie gezielt |
+| **Vereinsleitung** | die echten Daten beim Obmann, wie auf der bisherigen Website |
+| Startseite, Fußbereich, Seitenspalten | nichts Persönliches, nur ein Verweis auf das Kontaktformular |
+
+Sobald der Verein eine eigene Adresse hat (etwa `office@rehlacke.at`) und eventuell ein
+Vereinstelefon, gehören sie unter *Einstellungen → Verein und Kontakt* in die Felder
+**Vereins-E-Mail, öffentlich** und **Vereinstelefon, öffentlich**. Dann erscheinen sie an
+den sichtbaren Stellen und der Verweis auf das Formular entfällt – ohne Codeänderung.
+
+Solange diese Felder leer sind, steht auf der Startseite und im Fußbereich keine private
+Nummer und keine private Adresse.
+
 ### Was noch zu tun ist
 
 * **Todesfälle.** Die Namen sind übernommen. Die zugehörigen Partezettel liegen als

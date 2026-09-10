@@ -149,12 +149,22 @@ const SETTING_DEFAULTS = {
   street: 'Benatzkygasse 3, Tor 1, Parzelle 1',
   zip: '1220',
   city: 'Wien',
+  // Die echten Daten der Vereinsleitung. Erscheinen nur im Impressum
+  // (Pflichtangabe) und auf der Kontaktseite, wo sie gezielt gesucht werden.
   phone: '0699 116 70 583',
   email: 'michael.stocker@aon.at',
+
+  /*
+   * Unpersönliche Vereinsadresse für die gut sichtbaren Stellen – Startseite,
+   * Fußbereich, Seitenspalten. Solange sie leer ist, steht dort ein Verweis auf
+   * das Kontaktformular statt einer privaten Nummer oder Adresse.
+   */
+  public_email: '',
+  public_phone: '',
   zvr: '968 877 975',
   office_hours:
     'Sprechstunden sind jederzeit nach persönlicher oder telefonischer '
-    + 'Voranmeldung möglich – Telefon 0699 116 70 583.',
+    + 'Voranmeldung möglich.',
   map_query: 'Benatzkygasse 3, 1220 Wien',
   footer_note: 'Mitglied im Zentralverband der Kleingärtner und Siedler Österreichs.',
   flohmarkt_intro:

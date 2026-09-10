@@ -188,8 +188,34 @@ const SETTING_GROUPS = [
       { key: 'street', label: 'Adresse', type: 'text' },
       { key: 'zip', label: 'PLZ', type: 'text', width: 'half' },
       { key: 'city', label: 'Ort', type: 'text', width: 'half' },
-      { key: 'phone', label: 'Telefon', type: 'text', width: 'half' },
-      { key: 'email', label: 'E-Mail', type: 'text', width: 'half' },
+      {
+        key: 'phone',
+        label: 'Telefon (nur Impressum und Kontaktseite)',
+        type: 'text',
+        width: 'half',
+      },
+      {
+        key: 'email',
+        label: 'E-Mail (nur Impressum und Kontaktseite)',
+        type: 'text',
+        width: 'half',
+      },
+      {
+        key: 'public_phone',
+        label: 'Vereinstelefon, öffentlich',
+        type: 'text',
+        width: 'half',
+        hint: 'Erscheint auf der Startseite und im Fußbereich. Leer lassen, '
+          + 'wenn dort keine Nummer stehen soll.',
+      },
+      {
+        key: 'public_email',
+        label: 'Vereins-E-Mail, öffentlich',
+        type: 'text',
+        width: 'half',
+        hint: 'Am besten eine Adresse des Vereins wie office@rehlacke.at, keine private. '
+          + 'Leer lassen: dann verweist die Seite auf das Kontaktformular.',
+      },
       { key: 'zvr', label: 'ZVR-Zahl', type: 'text', width: 'half' },
       { key: 'office_hours', label: 'Sprechstunde', type: 'textarea', rows: 2 },
     ],

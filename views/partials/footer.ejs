@@ -14,8 +14,9 @@
         <ul class="footer__list">
           <li><%= settings.street %></li>
           <li><%= settings.zip %> <%= settings.city %></li>
-          <% if (settings.phone) { %><li><a href="tel:<%= settings.phone.replace(/\s/g, '') %>"><%= settings.phone %></a></li><% } %>
-          <% if (settings.email) { %><li><a href="mailto:<%= settings.email %>"><%= settings.email %></a></li><% } %>
+          <% if (publicContact.phone) { %><li><a href="tel:<%= publicContact.phone.replace(/\s/g, '') %>"><%= publicContact.phone %></a></li><% } %>
+          <% if (publicContact.email) { %><li><a href="mailto:<%= publicContact.email %>"><%= publicContact.email %></a></li><% } %>
+          <% if (!publicContact.hasAny) { %><li><a href="/kontakt">Kontaktformular</a></li><% } %>
         </ul>
       </div>
 

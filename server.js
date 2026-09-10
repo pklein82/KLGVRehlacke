@@ -74,6 +74,17 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: PRODUCTION ? '7
 app.use((req, res, next) => {
   const settings = getSettings();
   res.locals.settings = settings;
+
+  /*
+   * Was an den gut sichtbaren Stellen gezeigt werden darf. Ohne eine
+   * unpersönliche Vereinsadresse bleibt dort nur der Verweis auf das
+   * Kontaktformular – keine private Nummer, keine private E-Mail-Adresse.
+   */
+  res.locals.publicContact = {
+    email: settings.public_email,
+    phone: settings.public_phone,
+    hasAny: Boolean(settings.public_email || settings.public_phone),
+  };
   res.locals.nav = buildNavigation();
   res.locals.h = helpers;
   res.locals.icon = icon;

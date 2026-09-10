@@ -27,7 +27,7 @@
         <h2>Kontakt</h2>
         <ul class="contact-list text-sm">
           <li><%- icon('pin') %><div><%= settings.street %><br><%= settings.zip %> <%= settings.city %></div></li>
-          <% if (settings.email) { %><li><%- icon('mail') %><div><a href="mailto:<%= settings.email %>"><%= settings.email %></a></div></li><% } %>
+          <% if (publicContact.email) { %><li><%- icon('mail') %><div><a href="mailto:<%= publicContact.email %>"><%= publicContact.email %></a></div></li><% } %>
         </ul>
         <p class="mb-0 mt-2"><a class="btn btn--outline btn--sm" href="/kontakt">Nachricht senden</a></p>
       </div>
